@@ -13,6 +13,6 @@ module.exports = [
   createI18n({
     app: think.app, // 如果为空，__ 就不会被自动 `assign` 到 `think-view` 实例
     i18nFolder: path.resolve(__dirname, '../i18n'),
-    localesMapping(locales) { return 'en' }
+    localesMapping(locales) { return 'cn' }
   })
 ];
