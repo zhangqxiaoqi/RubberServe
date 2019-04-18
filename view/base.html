@@ -3,9 +3,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>{{title}}</title>
-	<meta name="keywords" content="唯星集团">
-	<meta name="description" content="唯星集团">
+	<title>{{ companyInfo['COMPANY_NAME_'+locale] }}</title>
+	<meta name="keywords" content="{{ companyInfo['COMPANY_NAME_'+locale] }}">
+	<meta name="description" content="{{ companyInfo['COMPANY_NAME_'+locale] }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="shortcut icon" href="favicon.ico">
 	
@@ -38,8 +38,15 @@
 	    			
 	    		</div>
 	    		<div class="Language pull-right">
-	    			<a class="cn active" href="#">中文</a>
-	    			<a class="en" href="#">English</a>
+					{% if locale == 'CN' %}
+						<a class="cn active" data="CN" href="javascript:;">中文</a>
+						<a class="en" data="EN" href="javascript:;">English</a>
+					{% endif %}
+					{% if locale == 'EN' %}
+						<a class="cn " data="CN" href="javascript:;">中文</a>
+						<a class="en active" data="EN" href="javascript:;">English</a>
+					{% endif %}
+	    			
 	    		</div>
 	    	</div>
 	    </div>
@@ -165,15 +172,7 @@
 	<!--底部版权-->
 	<div class="copy">
 		<div class="container">
-			Copyright(c)2015-2024 上海唯星橡胶塑料制品有限公司
-			<a href="map.html">站点地图</a>
-			<div class="link">
-				友情链接
-				<div class="lindown">
-					<a target="_blank" title="唯星" href="http://www.71360.com/">唯星</a>
-					<a target="_blank" title="百度一下，你就知道 " href="http://www.baidu.com/">百度</a>
-				</div>
-			</div>
+			Copyright(c)2019-2010 {{ companyInfo['COMPANY_NAME_'+locale] }}
 			<img src="static/images/yu.png" alt="" />
 			<div class="ferweima">
 				<img src="static/images/fewm.jpg" alt="" />
@@ -282,7 +281,16 @@
 <!--placeholder-->
 <script src="static/js/jquery.placeholder.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-	$(function(){ $('input, textarea').placeholder(); });
+	$(function(){ 
+		$('input, textarea').placeholder(); 
+		$('.Language a').click(function(e){
+			const lan=$(this).attr('data');
+			$.post("http://127.0.0.1:8360/index/switchLanguage",{lan:lan},function(result){
+				location.reload();
+			});
+		});
+	});
+
 </script>
 
 <!--<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
