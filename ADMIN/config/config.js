@@ -88,9 +88,9 @@ export default {
       routes: [
         {
           path: '/',
-          name: 'welcome',
+          name: 'baseinfo',
           icon: 'smile',
-          component: './Welcome',
+          component: './BaseInfo',
         },
         {
           component: './404',

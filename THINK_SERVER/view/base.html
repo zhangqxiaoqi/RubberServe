@@ -28,15 +28,6 @@
 	    <div class="logo">
 	    	<div class="container clearfix">
 	    		<a href="index.html" class="pull-left logoa"><img src="static/images/logo.png" alt="" /></a>
-	    		<!-- <div class="search pull-right">
-	    			<img class="searbtn" src="static/images/sear.png" alt="" />
-	    			<div class="seardown slideDown">
-	    				<input class="searinput" type="text" />
-	    				<input class="searsub" type="submit" value=""/>
-	    				<img class="searclosed" src="static/images/icon-closed.png" alt="" />
-	    			</div>
-	    			
-	    		</div> -->
 	    		<div class="Language pull-right">
 					{% if locale == 'CN' %}
 						<a class="cn active" data="CN" href="javascript:;">中文</a>
@@ -55,52 +46,22 @@
 	    		<li class="active"><a href="index.html">{{columnTitle.home}}</a></li>
 	    		<li><a href="about.html">{{columnTitle.aboutUS}}</a>
 	    			<ul>
-	    				<li><a href="about.html">公司简介</a></li>
-	    				<li><a href="honor.html">资质荣誉</a></li>
-	    				<li><a href="culture.html">企业文化</a></li>
+	    				<li><a href="about.html">{{columnTitle.companyProfile}}</a></li>
+	    				<li><a href="honor.html">{{columnTitle.cultureculture}}</a></li>
+	    				<li><a href="culture.html">{{columnTitle.culture}}</a></li>
 	    			</ul>
 	    		</li>
 	    		<li><a href="pro.html">{{columnTitle.productCenter}}</a>
 	    			<ul>
-	    				<li><a href="pro.html">底部固定型</a>
-	    					<div class="threedown">
-	    						<a href="pro.html">底部固定型</a>
-	    						<a href="pro.html">端部固定型</a>
-	    						<a href="pro.html">可交换型</a>
-	    						<a href="pro.html">履带型</a>
-	    					</div>
-	    				</li>
-	    				<li><a href="pro.html">端部固定型</a>
-	    					<div class="threedown">
-	    						<a href="pro.html">底部固定型</a>
-	    						<a href="pro.html">端部固定型</a>
-	    						<a href="pro.html">可交换型</a>
-	    						<a href="pro.html">履带型</a>
-	    					</div>
-	    				</li>
-	    				<li><a href="pro.html">可交换型</a>
-	    					<div class="threedown">
-	    						<a href="pro.html">底部固定型</a>
-	    						<a href="pro.html">端部固定型</a>
-	    						<a href="pro.html">可交换型</a>
-	    						<a href="pro.html">履带型</a>
-	    					</div>
-	    				</li>
-	    				<li><a href="pro.html">履带型</a>
-	    					<div class="threedown">
-	    						<a href="pro.html">底部固定型</a>
-	    						<a href="pro.html">端部固定型</a>
-	    						<a href="pro.html">可交换型</a>
-	    						<a href="pro.html">履带型</a>
-	    					</div>
+	    				<li>
+								<a href="pro.html">底部固定型</a>
 	    				</li>
 	    			</ul>
 	    		</li>
 	    		<li><a href="news.html">{{columnTitle.news}}</a>
 	    			<ul>
-	    				<li><a href="news.html">公司新闻</a></li>
-	    				<li><a href="news.html">行业新闻</a></li>
-	    				<li><a href="news.html">媒体报道</a></li>
+	    				<li><a href="news.html">{{columnTitle.companyNew}}</a></li>
+	    				<li><a href="news.html">{{columnTitle.tradeNews}}</a></li>
 	    			</ul>
 	    		</li>
 	    		<li><a href="produce.html">{{columnTitle.device}}</a>
@@ -112,8 +73,8 @@
 	    		</li>
 	    		<li><a href="contact.html">{{columnTitle.contact}}</a>
 	    			<ul>
-	    				<li><a href="contact.html">联系方式</a></li>
-	    				<li><a href="contact.html#message">在线留言</a></li>
+	    				<li><a href="contact.html">{{columnTitle.contactWay}}</a></li>
+	    				<li><a href="contact.html#message">{{columnTitle.onlineMessage}}</a></li>
 	    			</ul>
 	    		</li>
 	    	</ul>
@@ -127,7 +88,7 @@
 	<div class="footer-logo">
 		<div class="container">
 			<a href="index.html"><img src="static/images/logo.png" alt="" /></a>
-			<span>电话：<b>021-12345678</b></span>
+			<span>{{columnTitle.phone}}：<b>021-12345678</b></span>
 		</div>
 	</div>
 	
@@ -136,34 +97,26 @@
 		<div class="container">
 			<dl>
 				<dt><a href="index.html">{{columnTitle.home}}</a></dt>
-				<dd><a href="about.html">关于我们</a></dd>
-				<dd><a href="about.html">公司简介</a></dd>
-				<dd><a href="honor.html">资质荣誉</a></dd>
-				<dd><a href="culture.html">企业文化</a></dd>
+				<dd><a href="about.html">{{columnTitle.aboutUS}}</a></dd>
+				<dd><a href="about.html">{{columnTitle.companyProfile}}</a></dd>
+				<dd><a href="honor.html">{{columnTitle.cultureculture}}</a></dd>
+				<dd><a href="culture.html">{{columnTitle.culture}}</a></dd>
 			</dl>
 			<dl>
 				<dt><a href="pro.html">{{columnTitle.productCenter}}</a></dt>
-				<dd><a href="pro.html">底部固定型 </a></dd>
-				<dd><a href="pro.html">端部固定型</a></dd>
-				<dd><a href="pro.html">可交换型</a></dd>
-				<dd><a href="pro.html">履带型</a></dd>
 			</dl>
 			<dl>
 				<dt><a href="news.html">{{columnTitle.news}}</a></dt>
-				<dd><a href="news.html">公司新闻</a></dd>
-				<dd><a href="news.html">行业新闻</a></dd>
-				<dd><a href="news.html">媒体报道</a></dd>
+				<dd><a href="news.html">{{columnTitle.companyNew}}</a></dd>
+				<dd><a href="news.html">{{columnTitle.tradeNews}}</a></dd>
 			</dl>
 			<dl>
 				<dt><a href="produce.html">{{columnTitle.device}}</a></dt>
-				<dd><a href="produce.html">生产设备</a></dd>
-				<dd><a href="produce.html">生产设备</a></dd>
-				<dd><a href="produce.html">生产设备</a></dd>
 			</dl>
 			<dl>
 				<dt><a href="contact.html">{{columnTitle.contact}}</a></dt>
-				<dd><a href="contact.html">联系方式</a></dd>
-				<dd><a href="contact.html#message">在线留言</a></dd>
+				<dd><a href="contact.html">{{columnTitle.contactWay}}</a></dd>
+				<dd><a href="contact.html#message">{{columnTitle.onlineMessage}}</a></dd>
 			</dl>
 		</div>
 	</div>
