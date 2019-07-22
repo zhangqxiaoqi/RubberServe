@@ -18,23 +18,37 @@ const routes = [
       LoadingComponent: require('/Users/edz/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index').default,
     })
     : require('../../layouts/BasicLayout').default,
-    "Routes": [require('../Authorized').default],
-    "authority": [
-      "admin",
-      "user"
-    ],
     "routes": [
       {
         "path": "/",
         "name": "baseinfo",
-        "icon": "smile",
+        "icon": "file-text",
         "component": __IS_BROWSER
     ? _dvaDynamic({
-      
-      component: () => import(/* webpackChunkName: "p__BaseInfo" */'../BaseInfo'),
+      app: require('@tmp/dva').getApp(),
+models: () => [
+  import(/* webpackChunkName: 'p__BaseInfo__model.js' */'/Users/edz/Projects/github/RubberServe/ADMIN/src/pages/BaseInfo/model.js').then(m => { return { namespace: 'model',...m.default}})
+],
+      component: () => import(/* webpackChunkName: "p__BaseInfo__index" */'../BaseInfo/index'),
       LoadingComponent: require('/Users/edz/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index').default,
     })
-    : require('../BaseInfo').default,
+    : require('../BaseInfo/index').default,
+        "exact": true
+      },
+      {
+        "name": "news",
+        "path": "/news",
+        "icon": "file-search",
+        "component": __IS_BROWSER
+    ? _dvaDynamic({
+      app: require('@tmp/dva').getApp(),
+models: () => [
+  import(/* webpackChunkName: 'p__News__model.js' */'/Users/edz/Projects/github/RubberServe/ADMIN/src/pages/News/model.js').then(m => { return { namespace: 'model',...m.default}})
+],
+      component: () => import(/* webpackChunkName: "p__News" */'../News'),
+      LoadingComponent: require('/Users/edz/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index').default,
+    })
+    : require('../News').default,
         "exact": true
       },
       {

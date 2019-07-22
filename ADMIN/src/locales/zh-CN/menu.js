@@ -1,6 +1,7 @@
 export default {
   'menu.welcome': '欢迎',
   'menu.baseinfo': '基础信息维护',
+  'menu.news': '新闻',
 
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',

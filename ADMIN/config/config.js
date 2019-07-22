@@ -52,26 +52,25 @@ const plugins = [
     },
   ],
 ]; // 针对 preview.pro.ant.design 的 GA 统计代码
-
-if (isAntDesignProPreview) {
-  plugins.push([
-    'umi-plugin-ga',
-    {
-      code: 'UA-72788897-6',
-    },
-  ]);
-  plugins.push([
-    'umi-plugin-pro',
-    {
-      serverUrl: 'https://ant-design-pro.netlify.com',
-    },
-  ]);
-}
+// if (isAntDesignProPreview) {
+//   plugins.push([
+//     'umi-plugin-ga',
+//     {
+//       code: 'UA-72788897-6',
+//     },
+//   ]);
+//   plugins.push([
+//     'umi-plugin-pro',
+//     {
+//       serverUrl: 'https://ant-design-pro.netlify.com',
+//     },
+//   ]);
+// }
 
 export default {
   plugins,
   block: {
-    defaultGitUrl: 'https://github.com/ant-design/pro-blocks',
+    defaultGitUrl: 'https://github.com/umijs/umi-blocks',
   },
   hash: true,
   targets: {
@@ -83,14 +82,18 @@ export default {
     {
       path: '/',
       component: '../layouts/BasicLayout',
-      Routes: ['src/pages/Authorized'],
-      authority: ['admin', 'user'],
       routes: [
         {
           path: '/',
           name: 'baseinfo',
-          icon: 'smile',
-          component: './BaseInfo',
+          icon: 'file-text',
+          component: './BaseInfo/index',
+        },
+        {
+          name: 'news',
+          path: '/news',
+          icon: 'file-search',
+          component: './News',
         },
         {
           component: './404',
