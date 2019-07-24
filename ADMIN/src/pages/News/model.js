@@ -1,6 +1,7 @@
 import { getText } from './service';
+import { modelMerge } from '../../utils/utils';
 
-export default {
+export default modelMerge({
   namespace: 'news',
   state: {
     text: 'loading...',
@@ -26,4 +27,4 @@ export default {
       };
     },
   },
-};
+});

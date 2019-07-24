@@ -2,8 +2,10 @@
  * request 网络请求工具
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
+import { message, notification } from 'antd';
 import { extend } from 'umi-request';
-import { notification } from 'antd';
+import { isDev } from './utils';
+
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -45,5 +47,50 @@ const request = extend({
   errorHandler,
   // 默认错误处理
   credentials: 'include', // 默认请求是否带上cookie
+  getResponse: true,
 });
-export default request;
+// response interceptor, handling response
+// request.interceptors.response.use(async response => {
+//   const result = await response;
+//   if (result.code === 200) {
+//     result.ok = true;
+//   } else {
+//     message.error(result.msg);
+//   }
+//   return response;
+// });
+
+/**
+ *
+ * @param {RequestMethod} rm
+ * @returns {RequestMethod}
+ */
+function handleResult(rm) {
+  const filter = method => async (...args) => {
+    const { data, response } = await method(...args);
+    if (data instanceof Object) {
+      data.ok = +data.code === 200;
+      if (!data.ok) {
+        message.error(data.msg);
+      }
+      if (isDev) {
+        console.group(`请求接口 ${response.url}`);
+        console.log(data);
+        console.groupEnd();
+      }
+    }
+    return data;
+  };
+  function input(...args) {
+    return filter(rm)(...args);
+  }
+  input.get = filter(rm.get);
+  input.put = filter(rm.put);
+  input.post = filter(rm.post);
+  input.delete = filter(rm.delete);
+  input.rpc = rm.rpc;
+  input.interceptors = rm.interceptors;
+  input.patch = rm.patch;
+  return input;
+}
+export default handleResult(request);
