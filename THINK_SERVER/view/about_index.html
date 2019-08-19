@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block main %}
+	<!--banner-->
+	<section class="banner">
+    <img src="static/images/aboutbanner.jpg" alt="" />
+ </section>
+ 
+ <!--内页面包屑-->
+ <!-- <div class="mbx">
+   <div class="container">
+     您当前的位置：
+     <a href="index.html">首页</a> > 
+     <a href="about.html">关于我们</a> > 
+     <span>公司简介</span>
+   </div>
+ </div> -->
+ <div class="ny">
+   <div class="inptit">
+     <span><em>{{columnTitle.companyProfile}}</em></span>
+   </div>
+   <div class="about">
+     <div class="container">
+       {{info[locale+'_CONTENT']}}
+     </div>
+   </div>
+ </div>
+ <!--相关新闻-->
+ <div class="xgnews">
+  <h3>
+    <div class="container">
+      相关新闻
+    </div>
+  </h3>
+  <div class="container clearfix">
+    <ul class="pull-left">
+      <li><a href="news_show.html">唯星集团运营总裁张蓬受邀出席IAI国际创享节并发表主题演讲</a><span>2016.06.03</span></li>
+      <li><a href="news_show.html">商业之”智“每一家企业都梦想拥有完美的商业模式</a><span>2016.06.03</span></li>
+      <li><a href="news_show.html">张蓬开场如是说，“每一家传统企业多少年来的经营逻辑都</a><span>2016.06.03</span></li>
+      <li><a href="news_show.html">每个企业家都立志追求完美商业，何谓完美?就是补充自己</a><span>2016.06.03</span></li>
+    </ul>
+    <ul class="pull-right">
+      <li><a href="news_show.html">唯星集团运营总裁张蓬受邀出席IAI国际创享节并发表主题演讲</a><span>2016.06.03</span></li>
+      <li><a href="news_show.html">商业之”智“每一家企业都梦想拥有完美的商业模式</a><span>2016.06.03</span></li>
+      <li><a href="news_show.html">张蓬开场如是说，“每一家传统企业多少年来的经营逻辑都</a><span>2016.06.03</span></li>
+      <li><a href="news_show.html">每个企业家都立志追求完美商业，何谓完美?就是补充自己</a><span>2016.06.03</span></li>
+    </ul>
+  </div>
+</div>
+ 
+ 
+
+{% endblock %}
