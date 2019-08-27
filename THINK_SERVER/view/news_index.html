@@ -22,18 +22,21 @@
     </div>
     <div class="container innewcon">
       <ul class="clearfix">
-        {{
-          newsList.length
-        }}
-        <li>
-          <div class="pic"><a href="news_show.html"><img class="vcenter" src="static/images/innew1.jpg" alt="" /></a></div>
-          <div class="innewtxt">
-            <a href="news_show.html">杂志专访唯星总裁赵旭隆：技术驱动营销</a>
-            <span>2016.06.08</span>
-            <p>唯星集团可谓硕果累累，不仅在各大赛事拿奖拿到手软，更是在创新中不断得以发展... ...</p>
-          </div>
-        </li>
+        
+        {% for item in newsList.data %}
+          <li>
+            <div class="pic"><a href="news_show.html"><img class="vcenter" src={{item.COVER}} alt="" /></a></div>
+            <div class="innewtxt">
+              <a href="news_show.html">{{item['TITLE_'+locale]}}</a>
+              <span>{{item.CREATE_TIME}}</span>
+              <p>{{ (item['CONTENT_'+locale].substring(0,20)+'...') if item['CONTENT_'+locale].length>20 else item['CONTENT_'+locale]}}</p>
+            </div>
+          </li>
+        {% endfor %}
+        
       </ul>
+      {{pagination | safe}}
+    </ul>
       <div class="page">
         <a href="#">首页</a>
         <a class="prev" href="#">上一页</a>
@@ -52,8 +55,5 @@
     </div>
   </div>
 </div>
-
- 
- 
 
 {% endblock %}
