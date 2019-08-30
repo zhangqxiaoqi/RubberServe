@@ -14,43 +14,39 @@
      <span>公司简介</span>
    </div>
  </div> -->
- <div class="mbx">
+ <!-- <div class="mbx">
   <div class="container">
     您当前的位置：
     <a href="index.html">首页</a> > 
     <span>联系我们</span>
   </div>
-</div>
+</div> -->
 <div class="ny">
   
   <div class="contact">
     <div class="contacttit">
-      <span>联系我们</span>
+      <span>{{columnTitle.contact}}</span>
     </div>
     <div class="container">
       <div class="contacttxt">
-        <p>在科技创新领域，唯星集团分别与复旦大学、上海大学、华师大等知名院校达成战略伙伴关系，分别成立了云计算、大数据、智能营销等不同领域的产学研合作平台。2015年6月，唯星在美国硅谷成立研发中心，开拓海外科研基地；自成立至今唯星集团已取得60个软件著作权及1项发明专利；同时，经过多年在技术创新领域的探索与积累，唯星集团目前已获得虹口区科技小巨人企业、高新技术企业、双软认证企业、院士专家工作站、上海名牌企业等多项荣誉资质称号。</p>
+       {{info[locale+'_CONTENT']}}
       </div>
       <ul class="contact_us clearfix">
         <li>
-          <b>电话</b>
-          <a href="tel:021-12345678">(86)021-12345678</a>
+          <b>{{columnTitle.phone}}</b>
+          <a href="tel:021-12345678">{{companyInfo.MOBILE}}</a>
         </li>
         <li>
-          <b>邮箱</b>
-          <a href="mailto:2563n.wang@12345.com">2563n.wang@12345.com</a>
+          <b>{{columnTitle.email}}</b>
+          <a href={{companyInfo.EMAIL}}>{{companyInfo.EMAIL}}</a>
         </li>
         <li>
-          <b>地址</b>
-          上海水电路682号天虹商务大厦6、7、16、17F
+          <b>{{columnTitle.address}}</b>
+          {{companyInfo.ADDRESS_CN}}
         </li>
         <li>
-          <b>手机</b>
-          <a href="tel:189 1234 0789">(86)189 1234 0789</a>
-        </li>
-        <li>
-          <b>邮编</b>
-          200000
+          <b>{{columnTitle.postcode}}</b>
+          {{companyInfo.POSTCODE}}
         </li>
       </ul>
       
@@ -59,14 +55,14 @@
       
       <!--在线留言-->
       <div class="message" id="message">
-        <label><span>姓名</span><input type="text" /></label>
-        <label><span>电话</span><input type="text" /><em>*</em></label>
-        <label><span>地址</span><input type="text" /></label>
-        <label><span>邮箱</span><input type="text" /><em>*</em></label>
-        <label class="messagecon"><span>留言内容</span><textarea></textarea><em>*</em></label>
+        <label><span>{{columnTitle.name}}</span><input type="text" /></label>
+        <label><span>{{columnTitle.phone}}</span><input type="text" /><em>*</em></label>
+        <label><span>{{columnTitle.address}}</span><input type="text" /></label>
+        <label><span>{{columnTitle.email}}</span><input type="text" /><em>*</em></label>
+        <label class="messagecon"><span>{{columnTitle.leave_meg}}</span><textarea></textarea><em>*</em></label>
         
-        <label class="sub"><input type="submit" value="提交" /></label>
-        <label class="reset"><input type="reset" value="重置" /></label>
+        <label class="sub"><input type="submit" value={{columnTitle.submit}} /></label>
+        <label class="reset"><input type="reset" value={{columnTitle.reset}} /></label>
       </div>
     </div>
   </div>

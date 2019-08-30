@@ -23,7 +23,14 @@ const Common = {
         culture: '企业文化',
         contactWay: '联系方式',
         onlineMessage: '在线留言',
-        phone: '电话'
+        phone: '电话',
+        email: '邮箱',
+        address: '地址',
+        postcode: '邮编',
+        name: '姓名',
+        leave_meg: '留言',
+        submit: '提交',
+        reset: '重置'
 
       };
     } else {
@@ -43,7 +50,15 @@ const Common = {
         culture: 'Enterprise Culture',
         contactWay: 'Contact Way',
         onlineMessage: 'Online Message',
-        phone: 'CALL'
+        phone: 'CALL',
+        email: 'EMAIL',
+        address: 'ADDRESS',
+        postcode: 'POSTCODE',
+        name: 'NAME',
+        leave_meg: 'LEAVE MESSAGE',
+        submit: 'SUBMIT',
+        reset: 'RESET'
+
       };
     }
   }

@@ -711,6 +711,9 @@ img {
 .page a.next {
   margin: 0 20px;
 }
+.page .current{
+  color: #e75826;
+}
 .pro_show .container {
   width: 1030px;
 }

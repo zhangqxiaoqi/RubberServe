@@ -1,6 +1,6 @@
 // import {Common} from '../utils/common.js';
 const Base = require('./base.js');
-const pagination = require('think-pagination');
+const pagination = require('../utils/pagination');
 module.exports = class extends Base {
   async indexAction() {
     const option = {
@@ -14,7 +14,7 @@ module.exports = class extends Base {
         total: 'count: __COUNT__ , pages: __PAGE__'
       }
     };
-    const newsList = await this.model('rubber_news').where({TYPE: 0}).page(this.get('page')).countSelect();
+    const newsList = await this.model('rubber_news').order('CREATE_TIME DESC').where({TYPE: 0}).page(this.get('page')).countSelect();
     const html = pagination(newsList, {}, option);
     this.assign({newsList});
     this.assign('pagination', html);

@@ -25,9 +25,9 @@
         
         {% for item in newsList.data %}
           <li>
-            <div class="pic"><a href="news_show.html"><img class="vcenter" src={{item.COVER}} alt="" /></a></div>
+            <div class="pic"><a href={{"news_show.html?ID="+item.ID}}><img class="vcenter" src={{item.COVER}} alt="" /></a></div>
             <div class="innewtxt">
-              <a href="news_show.html">{{item['TITLE_'+locale]}}</a>
+              <a href={{"news_show.html?ID="+item.ID}} >{{item['TITLE_'+locale]}}</a>
               <span>{{item.CREATE_TIME}}</span>
               <p>{{ (item['CONTENT_'+locale].substring(0,20)+'...') if item['CONTENT_'+locale].length>20 else item['CONTENT_'+locale]}}</p>
             </div>
@@ -36,22 +36,6 @@
         
       </ul>
       {{pagination | safe}}
-    </ul>
-      <div class="page">
-        <a href="#">首页</a>
-        <a class="prev" href="#">上一页</a>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">7</a>
-        <a href="#">8</a>
-        <a href="#">9</a>
-        <a class="next" href="#">下一页</a>
-        <a href="#">尾页</a>
-      </div>
     </div>
   </div>
 </div>
