@@ -4,103 +4,27 @@
 	<section class="banner">
     <img src="static/images/productionbanner.jpg" alt="" />
  </section>
- 
- <!--内页面包屑-->
- <!-- <div class="mbx">
-   <div class="container">
-     您当前的位置：
-     <a href="index.html">首页</a> > 
-     <a href="about.html">关于我们</a> > 
-     <span>公司简介</span>
-   </div>
- </div> -->
+
  <div class="ny">
 		
   <div class="ption">
     <div class="contacttit">
-      <span>生产设备</span>
+      <span>{{columnTitle.device}}</span>
     </div>
     <div class="container">
       <ul>
+          {% for item in list.data %}
         <li>
-          <a href="produce_show.html"><img class="vcenter" src="static/images/ption1.jpg" alt="" /></a>
-          <a href="produce_show.html" class="zzc">
-            <span>橡胶生产设备</span>
-            <p>蛋白质可以促进橡胶的硫化，延缓老化。另一方面，蛋白质有较强的吸水性... ...</p>
+          <a href={{"produce_show.html?ID="+item.ID}}><img class="vcenter" src={{item.COVER}} alt="" /></a>
+          <a href={{"produce_show.html?ID="+item.ID}} class="zzc">
+            <span>{{item['TITLE_'+locale]}}</span>
+            {{item['DIGEST_'+locale] | safe}}
           </a>
         </li>
-        <li>
-          <a href="produce_show.html"><img class="vcenter" src="static/images/ption2.jpg" alt="" /></a>
-          <a href="produce_show.html" class="zzc">
-            <span>橡胶生产设备</span>
-            <p>蛋白质可以促进橡胶的硫化，延缓老化。另一方面，蛋白质有较强的吸水性... ...</p>
-          </a>
-        </li>
-        <li>
-          <a href="produce_show.html"><img class="vcenter" src="static/images/ption3.jpg" alt="" /></a>
-          <a href="produce_show.html" class="zzc">
-            <span>橡胶生产设备</span>
-            <p>蛋白质可以促进橡胶的硫化，延缓老化。另一方面，蛋白质有较强的吸水性... ...</p>
-          </a>
-        </li>
-        <li>
-          <a href="produce_show.html"><img class="vcenter" src="static/images/ption4.jpg" alt="" /></a>
-          <a href="produce_show.html" class="zzc">
-            <span>橡胶生产设备</span>
-            <p>蛋白质可以促进橡胶的硫化，延缓老化。另一方面，蛋白质有较强的吸水性... ...</p>
-          </a>
-        </li>
-        <li>
-          <a href="produce_show.html"><img class="vcenter" src="static/images/ption5.jpg" alt="" /></a>
-          <a href="produce_show.html" class="zzc">
-            <span>橡胶生产设备</span>
-            <p>蛋白质可以促进橡胶的硫化，延缓老化。另一方面，蛋白质有较强的吸水性... ...</p>
-          </a>
-        </li>
-        <li>
-          <a href="produce_show.html"><img class="vcenter" src="static/images/ption6.jpg" alt="" /></a>
-          <a href="produce_show.html" class="zzc">
-            <span>橡胶生产设备</span>
-            <p>蛋白质可以促进橡胶的硫化，延缓老化。另一方面，蛋白质有较强的吸水性... ...</p>
-          </a>
-        </li>
-        <li>
-          <a href="produce_show.html"><img class="vcenter" src="static/images/ption7.jpg" alt="" /></a>
-          <a href="produce_show.html" class="zzc">
-            <span>橡胶生产设备</span>
-            <p>蛋白质可以促进橡胶的硫化，延缓老化。另一方面，蛋白质有较强的吸水性... ...</p>
-          </a>
-        </li>
-        <li>
-          <a href="produce_show.html"><img class="vcenter" src="static/images/ption8.jpg" alt="" /></a>
-          <a href="produce_show.html" class="zzc">
-            <span>橡胶生产设备</span>
-            <p>蛋白质可以促进橡胶的硫化，延缓老化。另一方面，蛋白质有较强的吸水性... ...</p>
-          </a>
-        </li>
-        <li>
-          <a href="produce_show.html"><img class="vcenter" src="static/images/ption9.jpg" alt="" /></a>
-          <a href="produce_show.html" class="zzc">
-            <span>橡胶生产设备</span>
-            <p>蛋白质可以促进橡胶的硫化，延缓老化。另一方面，蛋白质有较强的吸水性... ...</p>
-          </a>
-        </li>
+        {% endfor %}
+        
       </ul>
-      <div class="page">
-        <a href="#">首页</a>
-        <a class="prev" href="#">上一页</a>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">7</a>
-        <a href="#">8</a>
-        <a href="#">9</a>
-        <a class="next" href="#">下一页</a>
-        <a href="#">尾页</a>
-      </div>
+      {{pagination | safe}}
       
     </div>
   </div>

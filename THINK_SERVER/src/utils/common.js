@@ -30,7 +30,8 @@ const Common = {
         name: '姓名',
         leave_meg: '留言',
         submit: '提交',
-        reset: '重置'
+        reset: '重置',
+        product_detail: '产品详细'
 
       };
     } else {
@@ -57,7 +58,8 @@ const Common = {
         name: 'NAME',
         leave_meg: 'LEAVE MESSAGE',
         submit: 'SUBMIT',
-        reset: 'RESET'
+        reset: 'RESET',
+        product_detail: 'PRODUCT DETAIL'
 
       };
     }
