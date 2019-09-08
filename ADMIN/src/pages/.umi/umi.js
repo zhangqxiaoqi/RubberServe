@@ -3,16 +3,29 @@ import history from './history';
 import '../../global.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import findRoute from '/Users/edz/Projects/github/RubberServe/ADMIN/node_modules/umi-build-dev/lib/findRoute.js';
-
+import findRoute, {
+  getUrlQuery,
+} from 'H:/github/RubberServe/ADMIN/node_modules/_umi-build-dev@1.11.3@umi-build-dev/lib/findRoute.js';
 
 // runtime plugins
 const plugins = require('umi/_runtimePlugin');
 window.g_plugins = plugins;
 plugins.init({
-  validKeys: ['patchRoutes','render','rootContainer','modifyRouteProps','onRouteChange','initialProps','dva','locale',],
+  validKeys: [
+    'patchRoutes',
+    'render',
+    'rootContainer',
+    'modifyRouteProps',
+    'onRouteChange',
+    'modifyInitialProps',
+    'initialProps',
+    'dva',
+    'locale',
+  ],
 });
-plugins.use(require('../../../node_modules/umi-plugin-dva/lib/runtime'));
+plugins.use(
+  require('../../../node_modules/_umi-plugin-dva@1.7.9@umi-plugin-dva/lib/runtime'),
+);
 
 const app = require('@tmp/dva')._onCreate();
 window.g_app = app;
@@ -28,8 +41,24 @@ let clientRender = async () => {
   } else {
     const pathname = location.pathname;
     const activeRoute = findRoute(require('@tmp/router').routes, pathname);
-    if (activeRoute && activeRoute.component) {
-      props = activeRoute.component.getInitialProps ? await activeRoute.component.getInitialProps() : {};
+    // 在客户端渲染前，执行 getInitialProps 方法
+    // 拿到初始数据
+    if (
+      activeRoute &&
+      activeRoute.component &&
+      activeRoute.component.getInitialProps
+    ) {
+      const initialProps = plugins.apply('modifyInitialProps', {
+        initialValue: {},
+      });
+      props = activeRoute.component.getInitialProps
+        ? await activeRoute.component.getInitialProps({
+            route: activeRoute,
+            isServer: false,
+            location,
+            ...initialProps,
+          })
+        : {};
     }
   }
   const rootContainer = plugins.apply('rootContainer', {
@@ -40,54 +69,87 @@ let clientRender = async () => {
     document.getElementById('root'),
   );
 };
-const render = plugins.compose('render', { initialValue: clientRender });
+const render = plugins.compose(
+  'render',
+  { initialValue: clientRender },
+);
 
 const moduleBeforeRendererPromises = [];
 // client render
 if (__IS_BROWSER) {
-
-  Promise.all(moduleBeforeRendererPromises).then(() => {
-    render();
-  }).catch((err) => {
-    window.console && window.console.error(err);
-  });
+  Promise.all(moduleBeforeRendererPromises)
+    .then(() => {
+      render();
+    })
+    .catch(err => {
+      window.console && window.console.error(err);
+    });
 }
 
 // export server render
 let serverRender, ReactDOMServer;
 if (!__IS_BROWSER) {
-  serverRender = async (ctx) => {
-    const pathname = ctx.req.url;
-    require('@tmp/history').default.push(pathname);
+  serverRender = async (ctx = {}) => {
+    // ctx.req.url may be `/bar?locale=en-US`
+    const [pathname] = (ctx.req.url || '').split('?');
+    const history = require('@tmp/history').default;
+    history.push(ctx.req.url);
     let props = {};
-    const activeRoute = findRoute(require('./router').routes, pathname) || false;
-    if (activeRoute && activeRoute.component.getInitialProps) {
-      props = await activeRoute.component.getInitialProps(ctx);
+    const activeRoute =
+      findRoute(require('./router').routes, pathname) || false;
+    if (
+      activeRoute &&
+      activeRoute.component &&
+      activeRoute.component.getInitialProps
+    ) {
+      const initialProps = plugins.apply('modifyInitialProps', {
+        initialValue: {},
+      });
+      // patch query object
+      const location = history.location
+        ? { ...history.location, query: getUrlQuery(history.location.search) }
+        : {};
+      props = await activeRoute.component.getInitialProps({
+        route: activeRoute,
+        isServer: true,
+        location,
+        // only exist in server
+        req: ctx.req || {},
+        res: ctx.res || {},
+        ...initialProps,
+      });
       props = plugins.apply('initialProps', {
-         initialValue: props,
+        initialValue: props,
       });
     } else {
-      // message activeRoute not found
-      console.log(`${pathname} activeRoute not found`);
+      // message activeRoute or getInitialProps not found
+      console.log(
+        !activeRoute
+          ? `${pathname} activeRoute not found`
+          : `${pathname} activeRoute's getInitialProps function not found`,
+      );
     }
     const rootContainer = plugins.apply('rootContainer', {
       initialValue: React.createElement(require('./router').default, props),
     });
-    const htmlTemplateMap = {
-      
-    };
+    const htmlTemplateMap = {};
     return {
-      htmlElement: htmlTemplateMap[pathname],
+      htmlElement:
+        activeRoute && activeRoute.path
+          ? htmlTemplateMap[activeRoute.path]
+          : '',
       rootContainer,
+      matchPath: activeRoute && activeRoute.path,
+      g_initialData: props,
     };
-  }
+  };
   // using project react-dom version
   // https://github.com/facebook/react/issues/13991
   ReactDOMServer = require('react-dom/server');
 }
 
 export { ReactDOMServer };
-export default __IS_BROWSER ? null : serverRender;
+export default (__IS_BROWSER ? null : serverRender);
 
 require('../../global.less');
 
