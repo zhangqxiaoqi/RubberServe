@@ -20,4 +20,9 @@ module.exports = class extends Base {
     this.assign('pagination', html);
     return this.display();
   }
+  async getNewsAction() {
+    const list = await this.model('rubber_news').order('CREATE_TIME DESC').page(this.get('page')).countSelect();
+    this.assign({list});
+    return this.json({code: 200, list});
+  }
 };

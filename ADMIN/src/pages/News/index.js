@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, Input } from 'antd';
+import { Button, Input } from 'antd';
 import { connect } from 'dva';
 import SimpleList from '@/components/SimpleList';
 
@@ -11,28 +11,23 @@ class Page extends Component {
     super(props);
     this.columns = [
       {
-        title: '公司名称',
-        dataIndex: 'factoryName',
-        key: 'factoryName',
+        title: '中文标题',
+        dataIndex: 'TITLE_CN',
+        key: 'TITLE_CN',
         width: 200,
       },
       {
-        title: '注册码',
-        dataIndex: 'registerCode',
-        key: 'registerCode',
+        title: '英文标题',
+        dataIndex: 'TITLE_EN',
+        key: 'TITLE_EN',
         width: 200,
       },
       {
-        title: '反馈内容',
-        dataIndex: 'content',
-        key: 'content',
-        showTooltip: true,
-      },
-      {
-        title: '反馈时间',
-        dataIndex: 'createTime',
-        key: 'createTime',
+        title: '类型',
+        dataIndex: 'TYPE',
+        key: 'TYPE',
         width: 200,
+        render: (text, record) => <div>{text === 0 ? '公司新闻' : '行业新闻'}</div>,
       },
       {
         title: '操作',
@@ -51,27 +46,33 @@ class Page extends Component {
       },
     ];
   }
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'news/fetch',
+      type: 'news/getNews',
     });
   }
+
   controls = () => {
     const searchControl = { label: '内容', control: <Input /> };
     return [searchControl];
   };
+
   render() {
-    const { text } = this.props;
     return (
       <SimpleList
         namespace="news"
-        rowKey="id"
-        fetchUrl="getNews"
+        rowKey="ID"
+        fetchUrl="news/getNews"
         controls={this.controls()}
         columns={this.columns}
         {...this.props}
-      ></SimpleList>
+      >
+        <>
+          <Button type="primary">新增</Button>
+        </>
+      </SimpleList>
     );
   }
 }

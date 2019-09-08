@@ -1,5 +1,5 @@
 import request from '@/utils/request';
 
-export function getText() {
-  return request('/api/baseinfo/text');
-}
+// export function getText() {
+//   return request('/api/baseinfo');
+// }

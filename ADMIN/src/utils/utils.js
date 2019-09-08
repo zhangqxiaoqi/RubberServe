@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { router } from 'umi';
-import request from '@/utils/request';
 import modelExtend from 'dva-model-extend';
+import request from '@/utils/request';
 
 /* eslint no-useless-escape:0 import/prefer-default-export:0 */
 const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/;
@@ -30,7 +30,7 @@ const filterFirstRouter = breadcrumb => {
   const routes = breadcrumb.routes.filter(item => item.path !== '/');
   return { ...breadcrumb, routes };
 };
-const getAlarmList = (fetchUrl, params) => request(`/yapi/${fetchUrl}`, { ...params });
+const getAlarmList = (fetchUrl, params) => request(`/api/${fetchUrl}`, { params: { ...params } });
 // 基础列表model
 const baseListModel = {
   state: {
@@ -52,9 +52,9 @@ const baseListModel = {
         payload: { _loading: true },
       });
       const { searchInfo, _pagination } = yield select(state => state[payload.namespace]);
-      const { Data, ok } = yield call(getAlarmList, payload.fetchUrl, {
+      const { list: Data, ok } = yield call(getAlarmList, payload.fetchUrl, {
         ...searchInfo,
-        ...{ pageIndex: _pagination.current, pageSize: _pagination.pageSize },
+        ...{ page: _pagination.current, pageSize: _pagination.pageSize },
       });
       if (!ok) {
         return;
@@ -62,8 +62,13 @@ const baseListModel = {
       yield put({
         type: '_save',
         payload: {
-          _dataList: Data.restList,
-          _pagination: { ..._pagination, ...{ total: Data.restCount } },
+          _dataList: Data.data,
+          _pagination: {
+            showQuickJumper: _pagination.showQuickJumper,
+            current: Data.currentPage,
+            pageSize: Data.pageSize,
+            total: Data.count,
+          },
           _loading: false,
         },
       });
@@ -79,9 +84,7 @@ const baseListModel = {
   },
 };
 
-const modelMerge = model => {
-  return modelExtend(baseListModel, model);
-};
+const modelMerge = model => modelExtend(baseListModel, model);
 export {
   isAntDesignProOrDev,
   isAntDesignPro,
