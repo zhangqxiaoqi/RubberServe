@@ -20,10 +20,10 @@ export function _onCreate() {
     app.use(plugin);
   });
   
-  app.model({ namespace: 'global', ...(require('H:/github/RubberServe/ADMIN/src/models/global.js').default) });
-app.model({ namespace: 'login', ...(require('H:/github/RubberServe/ADMIN/src/models/login.js').default) });
-app.model({ namespace: 'setting', ...(require('H:/github/RubberServe/ADMIN/src/models/setting.js').default) });
-app.model({ namespace: 'user', ...(require('H:/github/RubberServe/ADMIN/src/models/user.js').default) });
+  app.model({ namespace: 'global', ...(require('E:/Projects/github/RubberServe/ADMIN/src/models/global.js').default) });
+app.model({ namespace: 'login', ...(require('E:/Projects/github/RubberServe/ADMIN/src/models/login.js').default) });
+app.model({ namespace: 'setting', ...(require('E:/Projects/github/RubberServe/ADMIN/src/models/setting.js').default) });
+app.model({ namespace: 'user', ...(require('E:/Projects/github/RubberServe/ADMIN/src/models/user.js').default) });
   return app;
 }
 

@@ -3,7 +3,7 @@ import { Router as DefaultRouter, Route, Switch } from 'react-router-dom';
 import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/lib/renderRoutes';
 import history from '@tmp/history';
-import RendererWrapper0 from 'H:/github/RubberServe/ADMIN/src/pages/.umi/LocaleWrapper.jsx';
+import RendererWrapper0 from 'E:/Projects/github/RubberServe/ADMIN/src/pages/.umi/LocaleWrapper.jsx';
 import _dvaDynamic from 'dva/dynamic';
 
 const Router = require('dva/router').routerRedux.ConnectedRouter;
@@ -15,11 +15,37 @@ const routes = [
       ? _dvaDynamic({
           component: () =>
             import(/* webpackChunkName: "layouts__BasicLayout" */ '../../layouts/BasicLayout'),
-          LoadingComponent: require('H:/github/RubberServe/ADMIN/src/components/PageLoading/index')
+          LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
             .default,
         })
       : require('../../layouts/BasicLayout').default,
     routes: [
+      {
+        name: 'addoredit',
+        path: '/news/addoredit',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              app: require('@tmp/dva').getApp(),
+              models: () => [
+                import(/* webpackChunkName: 'p__News__AddOrEdit__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/News/AddOrEdit/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+                import(/* webpackChunkName: 'p__News__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/News/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+              ],
+              component: () =>
+                import(/* webpackChunkName: "p__News__AddOrEdit" */ '../News/AddOrEdit'),
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
+                .default,
+            })
+          : require('../News/AddOrEdit').default,
+        exact: true,
+      },
       {
         path: '/',
         name: 'baseinfo',
@@ -28,7 +54,7 @@ const routes = [
           ? _dvaDynamic({
               app: require('@tmp/dva').getApp(),
               models: () => [
-                import(/* webpackChunkName: 'p__BaseInfo__model.js' */ 'H:/github/RubberServe/ADMIN/src/pages/BaseInfo/model.js').then(
+                import(/* webpackChunkName: 'p__BaseInfo__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/BaseInfo/model.js').then(
                   m => {
                     return { namespace: 'model', ...m.default };
                   },
@@ -36,7 +62,7 @@ const routes = [
               ],
               component: () =>
                 import(/* webpackChunkName: "p__BaseInfo__index" */ '../BaseInfo/index'),
-              LoadingComponent: require('H:/github/RubberServe/ADMIN/src/components/PageLoading/index')
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
                 .default,
             })
           : require('../BaseInfo/index').default,
@@ -50,7 +76,7 @@ const routes = [
           ? _dvaDynamic({
               app: require('@tmp/dva').getApp(),
               models: () => [
-                import(/* webpackChunkName: 'p__News__model.js' */ 'H:/github/RubberServe/ADMIN/src/pages/News/model.js').then(
+                import(/* webpackChunkName: 'p__News__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/News/model.js').then(
                   m => {
                     return { namespace: 'model', ...m.default };
                   },
@@ -58,7 +84,7 @@ const routes = [
               ],
               component: () =>
                 import(/* webpackChunkName: "p__News" */ '../News'),
-              LoadingComponent: require('H:/github/RubberServe/ADMIN/src/components/PageLoading/index')
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
                 .default,
             })
           : require('../News').default,
@@ -69,7 +95,7 @@ const routes = [
           ? _dvaDynamic({
               component: () =>
                 import(/* webpackChunkName: "p__404" */ '../404'),
-              LoadingComponent: require('H:/github/RubberServe/ADMIN/src/components/PageLoading/index')
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
                 .default,
             })
           : require('../404').default,
@@ -78,7 +104,7 @@ const routes = [
       {
         component: () =>
           React.createElement(
-            require('H:/github/RubberServe/ADMIN/node_modules/_umi-build-dev@1.11.3@umi-build-dev/lib/plugins/404/NotFound.js')
+            require('E:/Projects/github/RubberServe/ADMIN/node_modules/_umi-build-dev@1.11.3@umi-build-dev/lib/plugins/404/NotFound.js')
               .default,
             { pagesPath: 'src/pages', hasRoutesInConfig: true },
           ),
@@ -89,7 +115,7 @@ const routes = [
     component: __IS_BROWSER
       ? _dvaDynamic({
           component: () => import(/* webpackChunkName: "p__404" */ '../404'),
-          LoadingComponent: require('H:/github/RubberServe/ADMIN/src/components/PageLoading/index')
+          LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
             .default,
         })
       : require('../404').default,
@@ -98,7 +124,7 @@ const routes = [
   {
     component: () =>
       React.createElement(
-        require('H:/github/RubberServe/ADMIN/node_modules/_umi-build-dev@1.11.3@umi-build-dev/lib/plugins/404/NotFound.js')
+        require('E:/Projects/github/RubberServe/ADMIN/node_modules/_umi-build-dev@1.11.3@umi-build-dev/lib/plugins/404/NotFound.js')
           .default,
         { pagesPath: 'src/pages', hasRoutesInConfig: true },
       ),
