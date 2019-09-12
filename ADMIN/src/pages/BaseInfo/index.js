@@ -8,9 +8,9 @@ import styles from './style.less';
 class Page extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch({
-      type: 'baseInfo/fetch',
-    });
+    // dispatch({
+    //   type: 'baseInfo/fetch',
+    // });
   }
 
   render() {

@@ -87,6 +87,7 @@ export default {
           name: 'addoredit',
           path: '/news/addoredit',
           component: './News/AddOrEdit',
+          hideInMenu: true,
         },
         {
           path: '/',
@@ -99,6 +100,7 @@ export default {
           path: '/news',
           icon: 'file-search',
           component: './News',
+          children: [{}],
         },
         {
           component: './404',
@@ -153,7 +155,7 @@ export default {
   chainWebpack: webpackPlugin,
   proxy: {
     '/api': {
-      target: 'http://127.0.0.1:8360',
+      target: 'http://127.0.0.1',
       changeOrigin: true,
       pathRewrite: {
         '^/api': '',

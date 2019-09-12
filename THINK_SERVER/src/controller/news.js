@@ -14,15 +14,42 @@ module.exports = class extends Base {
         total: 'count: __COUNT__ , pages: __PAGE__'
       }
     };
-    const newsList = await this.model('rubber_news').order('CREATE_TIME DESC').where({TYPE: 0}).page(this.get('page')).countSelect();
+    const newsList = await this.model('rubber_news')
+      .order('CREATE_TIME DESC')
+      .where({ TYPE: 0 })
+      .page(this.get('page'))
+      .countSelect();
     const html = pagination(newsList, {}, option);
-    this.assign({newsList});
+    this.assign({ newsList });
     this.assign('pagination', html);
     return this.display();
   }
   async getNewsAction() {
-    const list = await this.model('rubber_news').order('CREATE_TIME DESC').page(this.get('page')).countSelect();
-    this.assign({list});
-    return this.json({code: 200, list});
+    const list = await this.model('rubber_news')
+      .order('CREATE_TIME DESC')
+      .page(this.get('page'))
+      .countSelect();
+    this.assign({ list });
+    return this.json({ code: 200, list });
+  }
+  async saveAction() {
+    const data = this.post();
+    // 如果没有ID，则是新增
+    if (think.isEmpty(data.ID)) {
+      const res = await this.model('rubber_news').add(data);
+      if (res) {
+        return this.json({ code: 200, msg: '新增成功' });
+      } else {
+        return this.json({ code: -1, msg: '新增失败' });
+      }
+    } else {
+      // 更新
+      const res = await this.model('rubber_news').update(data);
+      if (res) {
+        return this.json({ code: 200, msg: '修改成功' });
+      } else {
+        return this.json({ code: 200, msg: '修改失败' });
+      }
+    }
   }
 };

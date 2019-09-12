@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Input } from 'antd';
 import { connect } from 'dva';
 import SimpleList from '@/components/SimpleList';
+import router from 'umi/router';
 
 import styles from './style.less';
 
@@ -58,7 +59,9 @@ class Page extends Component {
     const searchControl = { label: '内容', control: <Input /> };
     return [searchControl];
   };
-
+  handleRedirectAdd = () => {
+    router.push('/news/addoredit');
+  };
   render() {
     return (
       <SimpleList
@@ -70,7 +73,9 @@ class Page extends Component {
         {...this.props}
       >
         <>
-          <Button type="primary">新增</Button>
+          <Button type="primary" onClick={this.handleRedirectAdd}>
+            新增
+          </Button>
         </>
       </SimpleList>
     );

@@ -44,6 +44,7 @@ const routes = [
                 .default,
             })
           : require('../News/AddOrEdit').default,
+        hideInMenu: true,
         exact: true,
       },
       {
@@ -88,6 +89,7 @@ const routes = [
                 .default,
             })
           : require('../News').default,
+        children: [{}],
         exact: true,
       },
       {
