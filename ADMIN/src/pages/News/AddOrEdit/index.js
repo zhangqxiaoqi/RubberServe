@@ -41,13 +41,14 @@ class Page extends Component {
     if (info.file.status === 'done') {
       // Get this url from response in real world.
       const { formData } = this.props;
+      console.log(info.file);
       getBase64(info.file.originFileObj, imageUrl => {
         this.props.dispatch({
           type: 'newsAddOrEdit/save',
           payload: {
             formData: {
               ...formData,
-              cover: imageUrl,
+              cover: info.file.response.url,
             },
           },
         });
@@ -84,7 +85,7 @@ class Page extends Component {
       payload: {
         formData: {
           ...formData,
-          ...{ key: value },
+          ...{ [key]: value },
         },
       },
     });
@@ -134,7 +135,7 @@ class Page extends Component {
               <Col span={18}>
                 <Input
                   placeholder="英文标题"
-                  defaultValue={formData.title_cn}
+                  defaultValue={formData.title_en}
                   id="title_en"
                   onChange={this.inputChange}
                 />

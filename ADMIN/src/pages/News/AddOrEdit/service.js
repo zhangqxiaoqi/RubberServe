@@ -1,5 +1,5 @@
 import request from '@/utils/request';
 
-export function getText() {
-  return request('/api/news-addoredit/text');
+export function saveNews(data) {
+  return request('/api/news/save', { method: 'POST', data: data });
 }
