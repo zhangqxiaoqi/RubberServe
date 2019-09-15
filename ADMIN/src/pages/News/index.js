@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input } from 'antd';
+import { Button, Input, Popconfirm } from 'antd';
 import { connect } from 'dva';
 import SimpleList from '@/components/SimpleList';
 import router from 'umi/router';
@@ -36,12 +36,19 @@ class Page extends Component {
         kery: 'id',
         render: (text, record) => (
           <div>
-            <Button type="link" size="small">
+            <Button type="link" size="small" onClick={() => this.handleEdit(record.ID)}>
               编辑
             </Button>
-            <Button type="link" size="small">
-              删除
-            </Button>
+            <Popconfirm
+              title="确定删除么？"
+              okText="是"
+              cancelText="否"
+              onConfirm={() => this.handleDel(record.ID)}
+            >
+              <Button type="link" size="small">
+                删除
+              </Button>
+            </Popconfirm>
           </div>
         ),
       },
@@ -60,7 +67,22 @@ class Page extends Component {
     return [searchControl];
   };
   handleRedirectAdd = () => {
-    router.push('/news/addoredit');
+    router.push('/news/add');
+  };
+  handleDel = ID => {
+    this.props
+      .dispatch({
+        type: 'news/del',
+        payload: {
+          ID,
+        },
+      })
+      .then(() => {
+        this.simpleListRef.handleReload();
+      });
+  };
+  handleEdit = ID => {
+    router.push(`/news/add?ID=${ID}`);
   };
   render() {
     return (
@@ -71,6 +93,7 @@ class Page extends Component {
         controls={this.controls()}
         columns={this.columns}
         {...this.props}
+        ref={current => (this.simpleListRef = current)}
       >
         <>
           <Button type="primary" onClick={this.handleRedirectAdd}>

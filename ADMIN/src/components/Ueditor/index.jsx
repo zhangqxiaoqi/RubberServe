@@ -44,7 +44,7 @@ class Ueditor extends React.Component {
         form.append('uploadFile', file);
 
         const res = await request('/api/util/upload/', { method: 'POST', data: form });
-        return res.url;
+        return res.data.url;
       } catch (error) {
         message.error('上传图片失败');
         throw error;

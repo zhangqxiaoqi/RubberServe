@@ -1,5 +1,9 @@
 import request from '@/utils/request';
 
-export function getText() {
-  return request('/api/news/list');
+/**
+ *新闻珊瑚
+ * @param {*} ID
+ */
+export function newsDel(ID) {
+  return request('/api/news/del', { params: { ID } });
 }

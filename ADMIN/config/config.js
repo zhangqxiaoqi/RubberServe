@@ -85,7 +85,13 @@ export default {
       routes: [
         {
           name: 'addoredit',
-          path: '/news/addoredit',
+          path: '/news/add',
+          component: './News/AddOrEdit',
+          hideInMenu: true,
+        },
+        {
+          name: 'addoredit',
+          path: '/news/edit',
           component: './News/AddOrEdit',
           hideInMenu: true,
         },

@@ -32,6 +32,9 @@ module.exports = class extends Base {
     this.assign({ list });
     return this.json({ code: 200, list });
   }
+  /**
+   *保存
+   */
   async saveAction() {
     const data = this.post();
     // 如果没有ID，则是新增
@@ -44,12 +47,44 @@ module.exports = class extends Base {
       }
     } else {
       // 更新
-      const res = await this.model('rubber_news').update(data);
+      const res = await this.model('rubber_news')
+        .where({ ID: data.ID })
+        .update(data);
       if (res) {
         return this.json({ code: 200, msg: '修改成功' });
       } else {
-        return this.json({ code: 200, msg: '修改失败' });
+        return this.json({ code: -1, msg: '修改失败' });
       }
+    }
+  }
+  /**
+   * 删除
+   */
+  async delAction() {
+    if (this.get('ID')) {
+      const res = await this.model('rubber_news')
+        .where({ ID: this.get('ID') })
+        .delete();
+      if (res) {
+        return this.json({ code: 200, msg: '删除成功' });
+      } else {
+        return this.json({ code: -1, msg: '删除失败' });
+      }
+    } else {
+      return this.json({ code: -1, msg: '没有获取相应ID' });
+    }
+  }
+  /**
+   *获取详情
+   */
+  async getDetailAction() {
+    if (this.get('ID')) {
+      const res = await this.model('rubber_news')
+        .where({ ID: this.get('ID') })
+        .find();
+      return this.json({ code: 200, msg: '', data: res });
+    } else {
+      return this.json({ code: -1, msg: '没有获取相应ID' });
     }
   }
 };

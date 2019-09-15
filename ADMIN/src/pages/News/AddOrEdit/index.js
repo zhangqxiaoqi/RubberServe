@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Upload, Icon, message, Card, Input, Row, Col } from 'antd';
+import { Button, Upload, Icon, message, Card, Input, Row, Col, Radio } from 'antd';
 import { connect } from 'dva';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import UEditor from '@/components/Ueditor';
@@ -25,10 +25,15 @@ function beforeUpload(file) {
 @connect(({ newsAddOrEdit }) => newsAddOrEdit)
 class Page extends Component {
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'newsAddOrEdit/fetch',
-    });
+    const ID = this.props.location.query.ID;
+    if (ID) {
+      this.props.dispatch({
+        type: 'newsAddOrEdit/getDetail',
+        payload: {
+          ID,
+        },
+      });
+    }
   }
   handleChange = info => {
     if (info.file.status === 'uploading') {
@@ -41,14 +46,13 @@ class Page extends Component {
     if (info.file.status === 'done') {
       // Get this url from response in real world.
       const { formData } = this.props;
-      console.log(info.file);
       getBase64(info.file.originFileObj, imageUrl => {
         this.props.dispatch({
           type: 'newsAddOrEdit/save',
           payload: {
             formData: {
               ...formData,
-              cover: info.file.response.url,
+              cover: info.file.response.data.url,
             },
           },
         });
@@ -75,11 +79,8 @@ class Page extends Component {
   };
   inputChange = e => {
     const { formData } = this.props;
-    console.log(e.target);
     const key = e.target.id;
     const value = e.target.value;
-    console.log(key);
-    console.log(value);
     this.props.dispatch({
       type: 'newsAddOrEdit/save',
       payload: {
@@ -107,6 +108,18 @@ class Page extends Component {
       type: 'newsAddOrEdit/saveNews',
     });
   };
+  handleRadioChange = e => {
+    const { formData } = this.props;
+    this.props.dispatch({
+      type: 'newsAddOrEdit/save',
+      payload: {
+        formData: {
+          ...formData,
+          ...{ type: e.target.value },
+        },
+      },
+    });
+  };
   render() {
     const { loading, imageUrl, formData } = this.props;
     const uploadButton = (
@@ -119,29 +132,38 @@ class Page extends Component {
       <PageHeaderWrapper>
         <Card>
           <div className={styles.form_main}>
-            <Row>
+            <Row className={styles.form_row}>
               <Col span={2}>中文标题</Col>
               <Col span={18}>
                 <Input
                   placeholder="中文标题"
-                  defaultValue={formData.title_cn}
+                  value={formData.title_cn}
                   onChange={this.inputChange}
                   id="title_cn"
                 />
               </Col>
             </Row>
-            <Row>
+            <Row className={styles.form_row}>
               <Col span={2}>英文标题</Col>
               <Col span={18}>
                 <Input
                   placeholder="英文标题"
-                  defaultValue={formData.title_en}
+                  value={formData.title_en}
                   id="title_en"
                   onChange={this.inputChange}
                 />
               </Col>
             </Row>
-            <Row>
+            <Row className={styles.form_row}>
+              <Col span={2}>新闻类型</Col>
+              <Col span={18}>
+                <Radio.Group onChange={this.handleRadioChange} value={formData.type}>
+                  <Radio value={0}>公司新闻</Radio>
+                  <Radio value={1}>行业新闻</Radio>
+                </Radio.Group>
+              </Col>
+            </Row>
+            <Row className={styles.form_row}>
               <Col span={2}>封面上传</Col>
               <Col span={18}>
                 <Upload
@@ -161,25 +183,25 @@ class Page extends Component {
                 </Upload>
               </Col>
             </Row>
-            <Row>
+            <Row className={styles.form_row}>
               <Col span={4}>中文新闻内容</Col>
               <Col span={14}></Col>
             </Row>
-            <Row>
+            <Row className={styles.form_row}>
               <Col span={20}>
                 <UEditor onReady={this.onReady()} ref={this.attachEditor} />
               </Col>
             </Row>
-            <Row>
+            <Row className={styles.form_row}>
               <Col span={4}>英文新闻内容</Col>
               <Col span={14}></Col>
             </Row>
-            <Row>
+            <Row className={styles.form_row}>
               <Col span={20}>
                 <UEditor onReady={this.onReadyEN()} ref={this.attachEditorEN} />
               </Col>
             </Row>
-            <Row>
+            <Row className={styles.form_row}>
               <Col>
                 <Button type="primary" onClick={this.handleSubmit}>
                   提交

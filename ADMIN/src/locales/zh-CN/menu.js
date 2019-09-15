@@ -50,5 +50,7 @@ export default {
   'menu.editor.flow': '流程编辑器',
   'menu.editor.mind': '脑图编辑器',
   'menu.editor.koni': '拓扑编辑器',
+  'menu.news.add': '新闻新增',
   'menu.addoredit': '新闻操作',
+  'menu.news.edit': '新闻编辑',
 };

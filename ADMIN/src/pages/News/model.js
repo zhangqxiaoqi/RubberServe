@@ -1,5 +1,6 @@
-import { getText } from './service';
+import { newsDel } from './service';
 import { modelMerge } from '../../utils/utils';
+import { message } from 'antd';
 
 export default modelMerge({
   namespace: 'news',
@@ -8,14 +9,11 @@ export default modelMerge({
   },
 
   effects: {
-    *fetch(_, { call, put }) {
-      const { text } = yield call(getText);
-      yield put({
-        type: 'save',
-        payload: {
-          text,
-        },
-      });
+    *del({ payload }, { call, put }) {
+      const { ok } = yield call(newsDel, payload.ID);
+      if (ok) {
+        message.success('删除成功！');
+      }
     },
   },
 

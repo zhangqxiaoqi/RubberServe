@@ -22,7 +22,34 @@ const routes = [
     routes: [
       {
         name: 'addoredit',
-        path: '/news/addoredit',
+        path: '/news/add',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              app: require('@tmp/dva').getApp(),
+              models: () => [
+                import(/* webpackChunkName: 'p__News__AddOrEdit__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/News/AddOrEdit/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+                import(/* webpackChunkName: 'p__News__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/News/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+              ],
+              component: () =>
+                import(/* webpackChunkName: "p__News__AddOrEdit" */ '../News/AddOrEdit'),
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
+                .default,
+            })
+          : require('../News/AddOrEdit').default,
+        hideInMenu: true,
+        exact: true,
+      },
+      {
+        name: 'addoredit',
+        path: '/news/edit',
         component: __IS_BROWSER
           ? _dvaDynamic({
               app: require('@tmp/dva').getApp(),

@@ -32,7 +32,7 @@ output.tar.gz
 
 runtime/
 app/
-uoloading
+uploading/
 
 config.development.js
 adapter.development.js

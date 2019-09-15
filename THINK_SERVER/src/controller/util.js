@@ -24,10 +24,13 @@ module.exports = class extends think.Controller {
       fs.writeFileSync(savepath + newfilename, datas);
       const dbPath = `${config.sitDomain}/static/uploading/${newfilename}`;
       return this.json({
-        name: newfilename,
-        status: 'done',
-        url: dbPath,
-        thumbUrl: dbPath
+        code: 200,
+        data: {
+          name: newfilename,
+          status: 'done',
+          url: dbPath,
+          thumbUrl: dbPath
+        }
       });
     }
   }
