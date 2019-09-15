@@ -3,6 +3,7 @@ import { Button, Upload, Icon, message, Card, Input, Row, Col, Radio } from 'ant
 import { connect } from 'dva';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import UEditor from '@/components/Ueditor';
+import router from 'umi/router';
 
 import styles from './style.less';
 function getBase64(img, callback) {
@@ -108,6 +109,9 @@ class Page extends Component {
       type: 'newsAddOrEdit/saveNews',
     });
   };
+  handleCancel = () => {
+    router.push('/news');
+  };
   handleRadioChange = e => {
     const { formData } = this.props;
     this.props.dispatch({
@@ -207,7 +211,7 @@ class Page extends Component {
                   提交
                 </Button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <Button>取消</Button>
+                <Button onClick={this.handleCancel}>取消</Button>
               </Col>
             </Row>
           </div>
