@@ -75,6 +75,28 @@ const routes = [
         exact: true,
       },
       {
+        name: 'about',
+        path: '/about',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              app: require('@tmp/dva').getApp(),
+              models: () => [
+                import(/* webpackChunkName: 'p__About__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/About/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+              ],
+              component: () =>
+                import(/* webpackChunkName: "p__About" */ '../About'),
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
+                .default,
+            })
+          : require('../About').default,
+        hideInMenu: true,
+        exact: true,
+      },
+      {
         path: '/',
         name: 'baseinfo',
         icon: 'file-text',

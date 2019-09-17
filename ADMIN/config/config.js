@@ -96,6 +96,12 @@ export default {
           hideInMenu: true,
         },
         {
+          name: 'about',
+          path: '/about',
+          component: './About',
+          hideInMenu: true,
+        },
+        {
           path: '/',
           name: 'baseinfo',
           icon: 'file-text',

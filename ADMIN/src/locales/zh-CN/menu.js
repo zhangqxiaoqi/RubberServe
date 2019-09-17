@@ -53,4 +53,5 @@ export default {
   'menu.news.add': '新闻新增',
   'menu.addoredit': '新闻操作',
   'menu.news.edit': '新闻编辑',
+  'menu.about': '关于我们',
 };
