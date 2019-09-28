@@ -23,27 +23,27 @@ function beforeUpload(file) {
   }
   return isJpgOrPng && isLt2M;
 }
-@connect(({ newsAddOrEdit }) => newsAddOrEdit)
+@connect(({ produceAddOrEdit }) => produceAddOrEdit)
 class Page extends Component {
   componentDidMount() {
     const ID = this.props.location.query.ID;
     if (ID) {
       this.props.dispatch({
-        type: 'newsAddOrEdit/getDetail',
+        type: 'produceAddOrEdit/getDetail',
         payload: {
           ID,
         },
       });
     } else {
       this.props.dispatch({
-        type: 'newsAddOrEdit/clearNews',
+        type: 'produceAddOrEdit/clearProduce',
       });
     }
   }
   handleChange = info => {
     if (info.file.status === 'uploading') {
       this.props.dispatch({
-        type: 'newsAddOrEdit/save',
+        type: 'produceAddOrEdit/save',
         payload: { loading: true },
       });
       return;
@@ -53,7 +53,7 @@ class Page extends Component {
       const { formData } = this.props;
       getBase64(info.file.originFileObj, imageUrl => {
         this.props.dispatch({
-          type: 'newsAddOrEdit/save',
+          type: 'produceAddOrEdit/save',
           payload: {
             formData: {
               ...formData,
@@ -87,7 +87,7 @@ class Page extends Component {
     const key = e.target.id;
     const value = e.target.value;
     this.props.dispatch({
-      type: 'newsAddOrEdit/save',
+      type: 'produceAddOrEdit/save',
       payload: {
         formData: {
           ...formData,
@@ -100,26 +100,28 @@ class Page extends Component {
     const { formData } = this.props;
     const content_cn = this.editorCN.getContent();
     const content_en = this.editorEN.getContent();
+    const digest_cn = this.editorCN.getContentTxt();
+    const digest_en = this.editorEN.getContentTxt();
     this.props.dispatch({
-      type: 'newsAddOrEdit/save',
+      type: 'produceAddOrEdit/save',
       payload: {
         formData: {
           ...formData,
-          ...{ content_cn, content_en },
+          ...{ content_cn, content_en, digest_cn, digest_en },
         },
       },
     });
     this.props.dispatch({
-      type: 'newsAddOrEdit/saveNews',
+      type: 'produceAddOrEdit/saveProduce',
     });
   };
   handleCancel = () => {
-    router.push('/news');
+    router.push('/produce');
   };
   handleRadioChange = e => {
     const { formData } = this.props;
     this.props.dispatch({
-      type: 'newsAddOrEdit/save',
+      type: 'produceAddOrEdit/save',
       payload: {
         formData: {
           ...formData,
@@ -163,15 +165,6 @@ class Page extends Component {
               </Col>
             </Row>
             <Row className={styles.form_row}>
-              <Col span={2}>新闻类型</Col>
-              <Col span={18}>
-                <Radio.Group onChange={this.handleRadioChange} value={formData.type}>
-                  <Radio value={0}>公司新闻</Radio>
-                  <Radio value={1}>行业新闻</Radio>
-                </Radio.Group>
-              </Col>
-            </Row>
-            <Row className={styles.form_row}>
               <Col span={2}>封面上传</Col>
               <Col span={18}>
                 <Upload
@@ -192,7 +185,7 @@ class Page extends Component {
               </Col>
             </Row>
             <Row className={styles.form_row}>
-              <Col span={4}>中文新闻内容</Col>
+              <Col span={4}>中文内容</Col>
               <Col span={14}></Col>
             </Row>
             <Row className={styles.form_row}>
@@ -201,7 +194,7 @@ class Page extends Component {
               </Col>
             </Row>
             <Row className={styles.form_row}>
-              <Col span={4}>英文新闻内容</Col>
+              <Col span={4}>英文内容</Col>
               <Col span={14}></Col>
             </Row>
             <Row className={styles.form_row}>

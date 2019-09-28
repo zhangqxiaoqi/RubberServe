@@ -6,7 +6,7 @@ import router from 'umi/router';
 
 import styles from './style.less';
 
-@connect(({ news }) => news)
+@connect(({ produce }) => produce)
 class Page extends Component {
   constructor(props) {
     super(props);
@@ -24,12 +24,20 @@ class Page extends Component {
         width: 200,
       },
       {
-        title: '类型',
-        dataIndex: 'TYPE',
-        key: 'TYPE',
+        title: '描述',
+        dataIndex: 'DIGEST_CN',
+        key: 'DIGEST_CN',
         width: 200,
-        render: (text, record) => <div>{text === 0 ? '公司新闻' : '行业新闻'}</div>,
+        showTooltip: true,
       },
+      {
+        title: '描述',
+        dataIndex: 'DIGEST_EN',
+        key: 'DIGEST_EN',
+        width: 200,
+        showTooltip: true,
+      },
+
       {
         title: '操作',
         width: 120,
@@ -57,9 +65,9 @@ class Page extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch({
-      type: 'news/getNews',
-    });
+    // dispatch({
+    //   type: 'produce/getProduces',
+    // });
   }
 
   controls = () => {
@@ -67,33 +75,33 @@ class Page extends Component {
     return [searchControl];
   };
   handleRedirectAdd = () => {
-    router.push('/news/add');
+    router.push('/produce/add');
   };
   handleDel = ID => {
     this.props
       .dispatch({
-        type: 'news/del',
+        type: 'produce/del',
         payload: {
           ID,
         },
       })
       .then(() => {
-        this.simpleListRef.handleReload();
+        this.simpleListRefProduce.handleReload();
       });
   };
   handleEdit = ID => {
-    router.push(`/news/edit?ID=${ID}`);
+    router.push(`/produce/edit?ID=${ID}`);
   };
   render() {
     return (
       <SimpleList
-        namespace="news"
+        namespace="produce"
         rowKey="ID"
-        fetchUrl="news/getNews"
+        fetchUrl="produce/getProduces"
         controls={this.controls()}
         columns={this.columns}
         {...this.props}
-        ref={current => (this.simpleListRef = current)}
+        ref={current => (this.simpleListRefProduce = current)}
       >
         <>
           <Button type="primary" onClick={this.handleRedirectAdd}>

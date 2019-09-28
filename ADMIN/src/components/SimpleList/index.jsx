@@ -185,7 +185,7 @@ class SimpleList extends React.Component {
 
   render() {
     const { _loading, _dataList, _pagination, _showExpend, rowKey, children, tabs } = this.props;
-
+    console.log(this.props);
     return (
       <PageHeaderWrapper footer={tabs}>
         <Card>

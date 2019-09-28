@@ -27,13 +27,15 @@ class Ueditor extends React.Component {
   };
 
   getContent = () => this.editorContent;
+  getContentTxt = () => this.editor.getContentTxt();
 
   setContent = content => {
     if (this.editor && this.editor.isReady) {
       this.editor.setContent(content);
     }
     this.initialContent = content;
-    console.log(this.initialContent);
+    // console.log(this.initialContent);
+    // console.log(this.getContentTxt());
   };
 
   uploadImage = async e => {

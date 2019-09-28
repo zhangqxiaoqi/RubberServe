@@ -6,7 +6,7 @@ import router from 'umi/router';
 
 import styles from './style.less';
 
-@connect(({ news }) => news)
+@connect(({ pro }) => pro)
 class Page extends Component {
   constructor(props) {
     super(props);
@@ -23,13 +23,7 @@ class Page extends Component {
         key: 'TITLE_EN',
         width: 200,
       },
-      {
-        title: '类型',
-        dataIndex: 'TYPE',
-        key: 'TYPE',
-        width: 200,
-        render: (text, record) => <div>{text === 0 ? '公司新闻' : '行业新闻'}</div>,
-      },
+
       {
         title: '操作',
         width: 120,
@@ -57,9 +51,9 @@ class Page extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch({
-      type: 'news/getNews',
-    });
+    // dispatch({
+    //   type: 'pro/getpros',
+    // });
   }
 
   controls = () => {
@@ -67,33 +61,33 @@ class Page extends Component {
     return [searchControl];
   };
   handleRedirectAdd = () => {
-    router.push('/news/add');
+    router.push('/pro/add');
   };
   handleDel = ID => {
     this.props
       .dispatch({
-        type: 'news/del',
+        type: 'pro/del',
         payload: {
           ID,
         },
       })
       .then(() => {
-        this.simpleListRef.handleReload();
+        this.simpleListRefpro.handleReload();
       });
   };
   handleEdit = ID => {
-    router.push(`/news/edit?ID=${ID}`);
+    router.push(`/pro/edit?ID=${ID}`);
   };
   render() {
     return (
       <SimpleList
-        namespace="news"
+        namespace="pro"
         rowKey="ID"
-        fetchUrl="news/getNews"
+        fetchUrl="pro/getPros"
         controls={this.controls()}
         columns={this.columns}
         {...this.props}
-        ref={current => (this.simpleListRef = current)}
+        ref={current => (this.simpleListRefpro = current)}
       >
         <>
           <Button type="primary" onClick={this.handleRedirectAdd}>

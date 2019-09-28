@@ -2,8 +2,10 @@
 const Base = require('./base.js');
 module.exports = class extends Base {
   async indexAction() {
-    const info = await this.model('rubber_device').where({ID: this.get('ID')}).find();
-    this.assign({info});
+    const info = await this.model('rubber_produce')
+      .where({ ID: this.get('ID') })
+      .find();
+    this.assign({ info });
     return this.display();
   }
 };

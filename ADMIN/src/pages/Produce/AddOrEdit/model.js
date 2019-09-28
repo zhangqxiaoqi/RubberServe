@@ -1,10 +1,10 @@
-import { saveNews, getNewDetail } from './service';
+import { saveProduce, getDetail } from './service';
 const moment = require('moment');
 import { message } from 'antd';
 import router from 'umi/router';
 
 export default {
-  namespace: 'newsAddOrEdit',
+  namespace: 'produceAddOrEdit',
   state: {
     text: 'loading...',
     loading: false,
@@ -13,15 +13,16 @@ export default {
       title_cn: '', //中文标题
       content_cn: '', //中文内容
       content_en: '', //英文内容
+      digest_cn: '', //中文内容纯文本
+      digest_en: '', //英文内容纯文本
       cover: '', //封面
-      type: 0,
       id: null,
     },
   },
 
   effects: {
-    *saveNews(_, { call, put, select }) {
-      const { formData } = yield select(state => state.newsAddOrEdit);
+    *saveProduce(_, { call, put, select }) {
+      const { formData } = yield select(state => state.produceAddOrEdit);
 
       if (!formData.title_cn || !formData.title_cn.length) {
         message.error('请输入中文标题！');
@@ -43,23 +44,23 @@ export default {
         message.error('请输入英文内容！');
         return;
       }
-      const result = yield call(saveNews, {
+      const result = yield call(saveProduce, {
         ID: formData.id,
         TITLE_CN: formData.title_cn,
         TITLE_EN: formData.title_en,
         COVER: formData.cover,
         CONTENT_CN: formData.content_cn,
         CONTENT_EN: formData.content_en,
-        TYPE: formData.type,
-        CREATE_TIME: moment().format('YYYY-MM-DD HH:mm:ss'),
+        DIGEST_CN: formData.digest_cn,
+        DIGEST_EN: formData.digest_en,
       });
       if (result.code === 200) {
         message.success('提交成功');
-        router.push('/news');
+        router.push('/produce');
       }
     },
     *getDetail({ payload }, { call, put, select }) {
-      const { data } = yield call(getNewDetail, payload.ID);
+      const { data } = yield call(getDetail, payload.ID);
       yield put({
         type: 'save',
         payload: {
@@ -69,13 +70,12 @@ export default {
             content_cn: data.CONTENT_CN, //中文内容
             content_en: data.CONTENT_EN, //英文内容
             cover: data.COVER, //封面
-            type: data.TYPE,
             id: data.ID,
           },
         },
       });
     },
-    *clearNews(_, { call, put, select }) {
+    *clearProduce(_, { call, put, select }) {
       yield put({
         type: 'save',
         payload: {
@@ -85,7 +85,6 @@ export default {
             content_cn: '', //中文内容
             content_en: '', //英文内容
             cover: '', //封面
-            type: 0,
             id: null,
           },
         },

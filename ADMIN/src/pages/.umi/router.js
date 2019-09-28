@@ -21,7 +21,52 @@ const routes = [
       : require('../../layouts/BasicLayout').default,
     routes: [
       {
-        name: 'addoredit',
+        path: '/',
+        name: 'baseinfo',
+        icon: 'file-text',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              app: require('@tmp/dva').getApp(),
+              models: () => [
+                import(/* webpackChunkName: 'p__BaseInfo__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/BaseInfo/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+              ],
+              component: () =>
+                import(/* webpackChunkName: "p__BaseInfo__index" */ '../BaseInfo/index'),
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
+                .default,
+            })
+          : require('../BaseInfo/index').default,
+        exact: true,
+      },
+      {
+        name: 'news',
+        path: '/news',
+        icon: 'file-text',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              app: require('@tmp/dva').getApp(),
+              models: () => [
+                import(/* webpackChunkName: 'p__News__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/News/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+              ],
+              component: () =>
+                import(/* webpackChunkName: "p__News" */ '../News'),
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
+                .default,
+            })
+          : require('../News').default,
+        children: [{}],
+        exact: true,
+      },
+      {
+        name: 'news.add',
         path: '/news/add',
         component: __IS_BROWSER
           ? _dvaDynamic({
@@ -48,7 +93,7 @@ const routes = [
         exact: true,
       },
       {
-        name: 'addoredit',
+        name: 'news.edit',
         path: '/news/edit',
         component: __IS_BROWSER
           ? _dvaDynamic({
@@ -97,48 +142,155 @@ const routes = [
         exact: true,
       },
       {
-        path: '/',
-        name: 'baseinfo',
+        name: 'produce.add',
+        path: '/produce/add',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              app: require('@tmp/dva').getApp(),
+              models: () => [
+                import(/* webpackChunkName: 'p__Produce__AddOrEdit__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/Produce/AddOrEdit/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+                import(/* webpackChunkName: 'p__Produce__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/Produce/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+              ],
+              component: () =>
+                import(/* webpackChunkName: "p__Produce__AddOrEdit" */ '../Produce/AddOrEdit'),
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
+                .default,
+            })
+          : require('../Produce/AddOrEdit').default,
+        hideInMenu: true,
+        exact: true,
+      },
+      {
+        name: 'produce.edit',
+        path: '/produce/edit',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              app: require('@tmp/dva').getApp(),
+              models: () => [
+                import(/* webpackChunkName: 'p__Produce__AddOrEdit__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/Produce/AddOrEdit/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+                import(/* webpackChunkName: 'p__Produce__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/Produce/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+              ],
+              component: () =>
+                import(/* webpackChunkName: "p__Produce__AddOrEdit" */ '../Produce/AddOrEdit'),
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
+                .default,
+            })
+          : require('../Produce/AddOrEdit').default,
+        hideInMenu: true,
+        exact: true,
+      },
+      {
+        name: 'produce',
+        path: '/produce',
         icon: 'file-text',
         component: __IS_BROWSER
           ? _dvaDynamic({
               app: require('@tmp/dva').getApp(),
               models: () => [
-                import(/* webpackChunkName: 'p__BaseInfo__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/BaseInfo/model.js').then(
+                import(/* webpackChunkName: 'p__Produce__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/Produce/model.js').then(
                   m => {
                     return { namespace: 'model', ...m.default };
                   },
                 ),
               ],
               component: () =>
-                import(/* webpackChunkName: "p__BaseInfo__index" */ '../BaseInfo/index'),
+                import(/* webpackChunkName: "p__Produce" */ '../Produce'),
               LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
                 .default,
             })
-          : require('../BaseInfo/index').default,
+          : require('../Produce').default,
         exact: true,
       },
       {
-        name: 'news',
-        path: '/news',
-        icon: 'file-search',
+        name: 'pro.add',
+        path: '/pro/add',
         component: __IS_BROWSER
           ? _dvaDynamic({
               app: require('@tmp/dva').getApp(),
               models: () => [
-                import(/* webpackChunkName: 'p__News__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/News/model.js').then(
+                import(/* webpackChunkName: 'p__Pro__AddOrEdit__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/Pro/AddOrEdit/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+                import(/* webpackChunkName: 'p__Pro__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/Pro/model.js').then(
                   m => {
                     return { namespace: 'model', ...m.default };
                   },
                 ),
               ],
               component: () =>
-                import(/* webpackChunkName: "p__News" */ '../News'),
+                import(/* webpackChunkName: "p__Pro__AddOrEdit" */ '../Pro/AddOrEdit'),
               LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
                 .default,
             })
-          : require('../News').default,
-        children: [{}],
+          : require('../Pro/AddOrEdit').default,
+        hideInMenu: true,
+        exact: true,
+      },
+      {
+        name: 'pro.edit',
+        path: '/pro/edit',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              app: require('@tmp/dva').getApp(),
+              models: () => [
+                import(/* webpackChunkName: 'p__Pro__AddOrEdit__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/Pro/AddOrEdit/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+                import(/* webpackChunkName: 'p__Pro__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/Pro/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+              ],
+              component: () =>
+                import(/* webpackChunkName: "p__Pro__AddOrEdit" */ '../Pro/AddOrEdit'),
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
+                .default,
+            })
+          : require('../Pro/AddOrEdit').default,
+        hideInMenu: true,
+        exact: true,
+      },
+      {
+        name: 'pro',
+        icon: 'file-text',
+        path: '/pro',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              app: require('@tmp/dva').getApp(),
+              models: () => [
+                import(/* webpackChunkName: 'p__Pro__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/Pro/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+              ],
+              component: () =>
+                import(/* webpackChunkName: "p__Pro" */ '../Pro'),
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
+                .default,
+            })
+          : require('../Pro').default,
         exact: true,
       },
       {
