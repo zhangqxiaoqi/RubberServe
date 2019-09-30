@@ -40,29 +40,14 @@ class Page extends Component {
       });
     }
   }
-  handleChange = info => {
-    if (info.file.status === 'uploading') {
-      this.props.dispatch({
-        type: 'proAddOrEdit/save',
-        payload: { loading: true },
-      });
-      return;
-    }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      const { formData } = this.props;
-      getBase64(info.file.originFileObj, imageUrl => {
-        this.props.dispatch({
-          type: 'proAddOrEdit/save',
-          payload: {
-            formData: {
-              ...formData,
-              cover: info.file.response.data.url,
-            },
-          },
-        });
-      });
-    }
+  handleChange = obj => {
+    console.log(obj);
+    this.props.dispatch({
+      type: 'proAddOrEdit/save',
+      payload: {
+        fileList: obj.fileList,
+      },
+    });
   };
   attachEditor = ref => {
     this.editorCN = ref;
@@ -116,7 +101,7 @@ class Page extends Component {
     });
   };
   handleCancel = () => {
-    router.push('/produce');
+    router.push('/pro');
   };
   handleRadioChange = e => {
     const { formData } = this.props;
@@ -165,14 +150,12 @@ class Page extends Component {
               </Col>
             </Row>
             <Row className={styles.form_row}>
-              <Col span={2}>封面上传</Col>
+              <Col span={2}>图片上传</Col>
               <Col span={18}>
                 <Upload
                   name="uploadFile"
                   listType="picture-card"
                   fileList={fileList}
-                  className="avatar-uploader"
-                  showUploadList={false}
                   action="/api/util/upload/"
                   beforeUpload={beforeUpload}
                   onChange={this.handleChange}

@@ -23,16 +23,6 @@ class Page extends Component {
         <Card title="基本信息" style={{ marginBottom: 10 }}>
           <div></div>
         </Card>
-        <Card title="产品中心" style={{ marginBottom: 10 }}>
-          <p>Card content</p>
-          <p>Card content</p>
-          <p>Card content</p>
-        </Card>
-        <Card title="设备中心" style={{ marginBottom: 10 }}>
-          <p>Card content</p>
-          <p>Card content</p>
-          <p>Card content</p>
-        </Card>
         <Card title="关于我们" style={{ marginBottom: 10 }}>
           <div className="link-box" onClick={() => this.handleAboutPage(1)}>
             公司简介
