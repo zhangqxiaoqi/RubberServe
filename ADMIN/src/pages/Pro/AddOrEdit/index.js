@@ -25,6 +25,12 @@ function beforeUpload(file) {
 }
 @connect(({ proAddOrEdit }) => proAddOrEdit)
 class Page extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fileList: props.fileList,
+    };
+  }
   componentDidMount() {
     const ID = this.props.location.query.ID;
     if (ID) {
@@ -38,16 +44,11 @@ class Page extends Component {
       this.props.dispatch({
         type: 'proAddOrEdit/clearPro',
       });
+      this.setState({ fileList: [] });
     }
   }
-  handleChange = obj => {
-    console.log(obj);
-    this.props.dispatch({
-      type: 'proAddOrEdit/save',
-      payload: {
-        fileList: obj.fileList,
-      },
-    });
+  handleChange = ({ fileList }) => {
+    this.setState({ fileList });
   };
   attachEditor = ref => {
     this.editorCN = ref;
@@ -82,6 +83,13 @@ class Page extends Component {
     });
   };
   handleSubmit = () => {
+    const { fileList } = this.state;
+    this.props.dispatch({
+      type: 'proAddOrEdit/save',
+      payload: {
+        fileList,
+      },
+    });
     const { formData } = this.props;
     const content_cn = this.editorCN.getContent();
     const content_en = this.editorEN.getContent();
@@ -116,7 +124,8 @@ class Page extends Component {
     });
   };
   render() {
-    const { loading, imageUrl, formData, fileList } = this.props;
+    const { loading, imageUrl, formData } = this.props;
+    const { fileList } = this.state;
     const uploadButton = (
       <div>
         <Icon type={loading ? 'loading' : 'plus'} />
@@ -156,6 +165,7 @@ class Page extends Component {
                   name="uploadFile"
                   listType="picture-card"
                   fileList={fileList}
+                  // action="/api/util/upload/"
                   action="/api/util/upload/"
                   beforeUpload={beforeUpload}
                   onChange={this.handleChange}

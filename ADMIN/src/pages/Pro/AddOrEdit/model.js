@@ -100,6 +100,7 @@ export default {
             imgs: '', //封面
             id: null,
           },
+          fileList: [],
         },
       });
     },
