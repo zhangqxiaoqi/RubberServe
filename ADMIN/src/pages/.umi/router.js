@@ -10,6 +10,50 @@ const Router = require('dva/router').routerRedux.ConnectedRouter;
 
 const routes = [
   {
+    name: 'login',
+    path: '/login',
+    component: __IS_BROWSER
+      ? _dvaDynamic({
+          component: () =>
+            import(/* webpackChunkName: "layouts__UserLayout" */ '../../layouts/UserLayout'),
+          LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
+            .default,
+        })
+      : require('../../layouts/UserLayout').default,
+    hideInMenu: true,
+    routes: [
+      {
+        name: 'login',
+        path: '/login',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              app: require('@tmp/dva').getApp(),
+              models: () => [
+                import(/* webpackChunkName: 'p__Login__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/Login/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+              ],
+              component: () =>
+                import(/* webpackChunkName: "p__Login" */ '../Login'),
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
+                .default,
+            })
+          : require('../Login').default,
+        exact: true,
+      },
+      {
+        component: () =>
+          React.createElement(
+            require('E:/Projects/github/RubberServe/ADMIN/node_modules/_umi-build-dev@1.11.3@umi-build-dev/lib/plugins/404/NotFound.js')
+              .default,
+            { pagesPath: 'src/pages', hasRoutesInConfig: true },
+          ),
+      },
+    ],
+  },
+  {
     path: '/',
     component: __IS_BROWSER
       ? _dvaDynamic({
@@ -291,6 +335,28 @@ const routes = [
                 .default,
             })
           : require('../Pro').default,
+        exact: true,
+      },
+      {
+        name: 'message',
+        path: '/message',
+        icon: 'file-text',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              app: require('@tmp/dva').getApp(),
+              models: () => [
+                import(/* webpackChunkName: 'p__Message__model.js' */ 'E:/Projects/github/RubberServe/ADMIN/src/pages/Message/model.js').then(
+                  m => {
+                    return { namespace: 'model', ...m.default };
+                  },
+                ),
+              ],
+              component: () =>
+                import(/* webpackChunkName: "p__Message" */ '../Message'),
+              LoadingComponent: require('E:/Projects/github/RubberServe/ADMIN/src/components/PageLoading/index')
+                .default,
+            })
+          : require('../Message').default,
         exact: true,
       },
       {

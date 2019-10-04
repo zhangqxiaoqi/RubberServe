@@ -80,6 +80,19 @@ export default {
   // umi routes: https://umijs.org/zh/guide/router.html
   routes: [
     {
+      name: 'login',
+      path: '/login',
+      component: '../layouts/UserLayout',
+      hideInMenu: true,
+      routes: [
+        {
+          name: 'login',
+          path: '/login',
+          component: './Login',
+        },
+      ],
+    },
+    {
       path: '/',
       component: '../layouts/BasicLayout',
       routes: [
@@ -150,12 +163,18 @@ export default {
           path: '/pro',
           component: './Pro',
         },
-
+        {
+          name: 'message',
+          path: '/message',
+          icon: 'file-text',
+          component: './Message',
+        },
         {
           component: './404',
         },
       ],
     },
+
     {
       component: './404',
     },

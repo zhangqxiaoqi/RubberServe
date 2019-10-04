@@ -60,4 +60,5 @@ export default {
   'menu.pro.add': '新增产品',
   'menu.pro.edit': '编辑产品',
   'menu.pro.addoredit': '产品中心操作',
+  'menu.message': '在线留言',
 };

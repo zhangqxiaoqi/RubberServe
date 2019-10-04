@@ -34,12 +34,18 @@ class Page extends Component {
   componentDidMount() {
     const ID = this.props.location.query.ID;
     if (ID) {
-      this.props.dispatch({
-        type: 'proAddOrEdit/getDetail',
-        payload: {
-          ID,
-        },
-      });
+      this.props
+        .dispatch({
+          type: 'proAddOrEdit/getDetail',
+          payload: {
+            ID,
+          },
+        })
+        .then(() => {
+          const { fileList } = this.props;
+          console.log(fileList);
+          this.setState({ fileList });
+        });
     } else {
       this.props.dispatch({
         type: 'proAddOrEdit/clearPro',

@@ -34,7 +34,7 @@
       <ul class="contact_us clearfix">
         <li>
           <b>{{columnTitle.phone}}</b>
-          <a href="tel:021-12345678">{{companyInfo.MOBILE}}</a>
+          <a href={{'tel:'+companyInfo.PHONE}}>{{companyInfo.PHONE}}</a>
         </li>
         <li>
           <b>{{columnTitle.email}}</b>
@@ -55,14 +55,15 @@
 
       <!--在线留言-->
       <div class="message" id="message">
-        <label><span>{{columnTitle.name}}</span><input type="text" /></label>
-        <label><span>{{columnTitle.phone}}</span><input type="text" /><em>*</em></label>
-        <label><span>{{columnTitle.address}}</span><input type="text" /></label>
-        <label><span>{{columnTitle.email}}</span><input type="text" /><em>*</em></label>
-        <label class="messagecon"><span>{{columnTitle.leave_meg}}</span><textarea></textarea><em>*</em></label>
+        <label><span>{{columnTitle.name}}</span><input id="name" type="text" /></label>
+        <label><span>{{columnTitle.phone}}</span><input id="phone" type="text" /><em>*</em></label>
+        <label><span>{{columnTitle.address}}</span><input id="address" type="text" /></label>
+        <label><span>{{columnTitle.email}}</span><input id="email" type="text" /><em>*</em></label>
+        <label class="messagecon"><span>{{columnTitle.leave_meg}}</span><textarea
+            id="leave_info"></textarea><em>*</em></label>
 
-        <label class="sub"><input type="submit" value={{columnTitle.submit}} /></label>
-        <label class="reset"><input type="reset" value={{columnTitle.reset}} /></label>
+        <label class="sub"><input id="submit_btn" type="submit" value={{columnTitle.submit}} /></label>
+        <label class="reset"><input id="reset_btn" type="reset" value={{columnTitle.reset}} /></label>
       </div>
     </div>
   </div>
@@ -84,8 +85,61 @@
 <!--placeholder-->
 <script src="static/js/jquery.placeholder.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+  var claerControls = function () {
+    $('#name').val('');
+    $('#phone').val('');
+    $('#address').val('');
+    $('#email').val('');
+    $('#leave_info').val('');
+  }
   $(function () {
     $('input, textarea').placeholder();
+    $('#reset_btn').click(function () {
+      claerControls();
+    });
+    $('#submit_btn').click(function () {
+      var NAME = $('#name').val();
+      var PHONE = $('#phone').val();
+      var ADDRESS = $('#address').val();
+      var EMAIL = $('#email').val();
+      var LEAVE_INFO = $('#leave_info').val();
+      if (NAME.trim().length === 0 || PHONE.trim().length === 0 || ADDRESS.trim().length === 0 || EMAIL.trim()
+        .length === 0 ||
+        LEAVE_INFO.trim().length === 0) {
+        alert('请完成填写相关信息！');
+        return;
+      }
+      if (NAME.length > 20) {
+        alert('姓名不能超过20个字符!');
+        return;
+      }
+      if (PHONE.length !== 11 || !(/(^[1-9]\d*$)/.test(PHONE))) {
+        alert('电话不合法！');
+        return;
+      }
+      if (ADDRESS.length > 200) {
+        alert('地址不能超过200个字符!');
+        return;
+      }
+      if (!(/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/).test(EMAIL)) {
+        alert('EMAIL不合法!');
+        return;
+      }
+      if (LEAVE_INFO.length > 1000) {
+        alert('留言不能超过1000个字符!');
+        return;
+      }
+      $.post("http://127.0.0.1/message/save", {
+        NAME,
+        PHONE,
+        ADDRESS,
+        EMAIL,
+        LEAVE_INFO
+      }, function (result) {
+        claerControls();
+        alert('提交成功！');
+      });
+    });
   });
 </script>
 <script type="text/javascript">
