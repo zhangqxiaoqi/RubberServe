@@ -100,12 +100,14 @@ class Page extends Component {
     const { formData } = this.props;
     const content_cn = this.editorCN.getContent();
     const content_en = this.editorEN.getContent();
+    const digest_cn = this.editorCN.getContentTxt();
+    const digest_en = this.editorEN.getContentTxt();
     this.props.dispatch({
       type: 'newsAddOrEdit/save',
       payload: {
         formData: {
           ...formData,
-          ...{ content_cn, content_en },
+          ...{ content_cn, content_en, digest_cn, digest_en },
         },
       },
     });

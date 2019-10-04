@@ -18,10 +18,24 @@ module.exports = class extends Base {
       .order('ID DESC')
       .page(this.get('page'))
       .countSelect();
+    // list.data = list.data.map(item => (item.IMGS = JSON.parse(item.IMGS)));
+    list.data.forEach(item => {
+      item.IMGS = JSON.parse(item.IMGS);
+    });
     const html = pagination(list, {}, option);
     this.assign({ list });
     this.assign('pagination', html);
     return this.display();
+  }
+  async homeAction() {
+    const list = await this.model('rubber_pro')
+      .order('ID DESC')
+      .limit(10)
+      .select();
+    list.forEach(item => {
+      item.IMGS = JSON.parse(item.IMGS);
+    });
+    return list;
   }
   async getProsAction() {
     const list = await this.model('rubber_pro')

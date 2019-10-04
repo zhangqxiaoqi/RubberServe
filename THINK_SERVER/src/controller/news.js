@@ -15,7 +15,7 @@ module.exports = class extends Base {
       }
     };
     const newsList = await this.model('rubber_news')
-      .order('CREATE_TIME DESC')
+      .order('ID DESC')
       .where({ TYPE: 0 })
       .page(this.get('page'))
       .countSelect();
@@ -24,9 +24,16 @@ module.exports = class extends Base {
     this.assign('pagination', html);
     return this.display();
   }
+  async homeAction() {
+    const newsList = await this.model('rubber_news')
+      .order('ID DESC')
+      .limit(3)
+      .select();
+    return newsList;
+  }
   async getNewsAction() {
     const list = await this.model('rubber_news')
-      .order('CREATE_TIME DESC')
+      .order('ID DESC')
       .page(this.get('page'))
       .countSelect();
     this.assign({ list });

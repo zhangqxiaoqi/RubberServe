@@ -1,52 +1,64 @@
 {% extends 'base.html' %}
 {% block main %}
-	<!--banner-->
-	<!--banner-->
-	<section class="banner">
-    <img src="static/images/probanner.jpg" alt="" />
- </section>
- 
- 
- <div class="ny">
-   
-   <div class="pro_show">
-     <div class="container">
-       <div class="pshowtit">
-         {{info['TITLE_'+locale]}}
-       </div>
-       <div class="procon">
-          <div class="proimg clearfix">
-              <div class="big">
-                  <ul>
-                     {% for item in info.IMGS.split(',') %}
-                        <li><img class="vcenter" src={{item}} alt="" /></li>
+<style>
+  .pro_big_back {
+    width: 100%;
+    height: 566px;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+</style>
+<!--banner-->
+<!--banner-->
+<section class="banner">
+  <img src="static/images/probanner.jpg" alt="" />
+</section>
 
-                    {% endfor %}
 
-                  </ul>
-                </div>
-                <div class="small">
-                    {% for item in info.IMGS.split(',') %}
-                    <span><img class="vcenter" src={{item}} alt="" /></span>
-                {% endfor %}
-                  
-                 </div>
-            </div>
-   
-         <div class="parameter">
-           <div class="protit">
-             <span>{{columnTitle.product_detail}}</span>
-           </div>
-           {{info['CONTENT_'+locale]}}
-         </div>
-       </div>
-       
-     </div>
-     
-   </div>
- </div>
+<div class="ny">
 
- 
- 
+  <div class="pro_show">
+    <div class="container">
+      <div class="pshowtit">
+        {{info['TITLE_'+locale]}}
+      </div>
+      <div class="procon">
+        <div class="proimg clearfix">
+          <div class="big">
+            <ul>
+              {% for item in imgs%}
+              <li>
+                <div class="pro_big_back" style={{'background-image:url('+item.url+')'}}></div>
+                <!-- <img class="vcenter" src={{item.url}} alt="" /> -->
+              </li>
+
+              {% endfor %}
+
+            </ul>
+          </div>
+          <div class="small">
+            {% for item in imgs%}
+            <span><img class="vcenter" src={{item.url}} alt="" /></span>
+            {% endfor %}
+
+          </div>
+        </div>
+
+        <div class="parameter">
+          <div class="protit">
+            <span>{{columnTitle.product_detail}}</span>
+          </div>
+          {{info['CONTENT_'+locale]|safe}}
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
 
 {% endblock %}

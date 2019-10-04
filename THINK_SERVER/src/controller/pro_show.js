@@ -6,6 +6,7 @@ module.exports = class extends Base {
       .where({ ID: this.get('ID') })
       .find();
     this.assign({ info });
+    this.assign({ imgs: JSON.parse(info.IMGS) });
     return this.display();
   }
 };

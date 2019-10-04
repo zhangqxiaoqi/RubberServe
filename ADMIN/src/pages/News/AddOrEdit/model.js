@@ -16,6 +16,8 @@ export default {
       cover: '', //封面
       type: 0,
       id: null,
+      digest_cn: '',
+      digest_en: '',
     },
   },
 
@@ -50,6 +52,8 @@ export default {
         COVER: formData.cover,
         CONTENT_CN: formData.content_cn,
         CONTENT_EN: formData.content_en,
+        DIGEST_CN: formData.digest_cn,
+        DIGEST_EN: formData.digest_en,
         TYPE: formData.type,
         CREATE_TIME: moment().format('YYYY-MM-DD HH:mm:ss'),
       });

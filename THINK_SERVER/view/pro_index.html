@@ -1,34 +1,38 @@
 {% extends 'base.html' %}
 {% block main %}
-	<!--banner-->
-	<section class="banner">
-    <img src="static/images/probanner.jpg" alt="" />
- </section>
+<!--banner-->
+<section class="banner">
+  <img src="static/images/probanner.jpg" alt="" />
+</section>
 
- <div class="ny">
-		
+<div class="ny">
+
   <div class="pro">
-      <div class="contacttit">
-          <span>{{columnTitle.productCenter}}</span>
-        </div>
+    <div class="contacttit">
+      <span>{{columnTitle.productCenter}}</span>
+    </div>
     <div class="container">
       <ul class="clearfix">
-          {% for item in list.data %}
+        {% for item in list.data %}
         <li>
-          <div class="pic"><a href={{"pro_show.html?ID="+item.ID}}><img class="vcenter" src={{item.IMGS.split(',')[0]}} alt="" /></a></div>
+          <div class="pic">
+            <a href={{"pro_show.html?ID="+item.ID}}>
+              <img class="vcenter" src={{item.IMGS[0].url}} alt="" />
+            </a>
+          </div>
           <a href={{"pro_show.html?ID="+item.ID}} class="protita">
             {{item['TITLE_'+locale]}}
           </a>
         </li>
         {% endfor %}
-        
+
       </ul>
       {{pagination | safe}}
     </div>
   </div>
 </div>
 
- 
- 
+
+
 
 {% endblock %}
