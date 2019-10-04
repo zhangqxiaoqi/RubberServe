@@ -29,14 +29,14 @@ const LoginComponent = ({ login: { submitting, password, account, remember }, di
             />
           </Form.Item>
 
-          <Form.Item>
+          {/* <Form.Item>
             <Checkbox
               checked={remember}
               onChange={e => updateState({ remember: e.target.checked })}
             >
               自动登录
             </Checkbox>
-          </Form.Item>
+          </Form.Item> */}
 
           <Form.Item>
             <Button
@@ -44,7 +44,6 @@ const LoginComponent = ({ login: { submitting, password, account, remember }, di
               type="primary"
               size="large"
               htmlType="submit"
-              loading={submitting}
               onClick={() => dispatch({ type: 'login/login' })}
             >
               登录

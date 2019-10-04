@@ -5,6 +5,7 @@
 import { message, notification } from 'antd';
 import { extend } from 'umi-request';
 import { isDev } from './utils';
+import { routerRedux } from 'dva/router';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -67,6 +68,13 @@ const request = extend({
  */
 function handleResult(rm) {
   const filter = method => async (...args) => {
+    if (window.location.pathname !== '/login') {
+      if (!localStorage.getItem('user')) {
+        window.g_app._store.dispatch({ type: 'login/logout' });
+        // return;
+      }
+    }
+
     const { data, response } = await method(...args);
     if (data instanceof Object) {
       data.ok = +data.code === 200;

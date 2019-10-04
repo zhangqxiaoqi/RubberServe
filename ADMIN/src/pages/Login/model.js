@@ -1,7 +1,7 @@
 import { getText } from './service';
 
 export default {
-  namespace: 'login',
+  namespace: 'loginAccount',
   state: {
     text: 'loading...',
   },

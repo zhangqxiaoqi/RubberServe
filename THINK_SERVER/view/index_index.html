@@ -2,9 +2,9 @@
 {% block main %}
 <!--banner-->
 <section class="banner">
-  <div><a href="#"><img src="static/images/banner01.jpg" alt="" /></a></div>
-  <div><a href="#"><img src="static/images/banner01.jpg" alt="" /></a></div>
-  <div><a href="#"><img src="static/images/banner01.jpg" alt="" /></a></div>
+  <div><a href="#"><img src="static/images/sy_banner1.jpg" alt="" /></a></div>
+  <div><a href="#"><img src="static/images/sy_banner1.jpg" alt="" /></a></div>
+  <div><a href="#"><img src="static/images/sy_banner1.jpg" alt="" /></a></div>
 </section>
 
 <!-- <div class="inn clearfix">
@@ -21,7 +21,7 @@
   <div class="inptit">
     <span><em>{{columnTitle.productCenter}}</em></span>
     <p>{{companyInfo['PRODUCT_CENTER_'+locale]}}</p>
-    <a href="#">{{columnTitle.seeMore}}</a>
+    <a href="pro.html">{{columnTitle.seeMore}}</a>
   </div>
   <div class="inpcon clearfix">
     <div class="container">
@@ -39,8 +39,8 @@
 <!--新闻中心-->
 <div class="innews">
   <div class="inptit">
-    <span><em class="left"></em>新闻中心<em class="right"></em></span>
-    <p>随着唯星集团营销及技术服务体系的不断创新升级，“唯星数字商业云”逐步成形，并完成了唯星集团适应未来数字营销发展趋势的全新商业模式的升级转型，即中国领先的SaaS级智能营销云平台</p>
+    <span><em class="left"></em>{{columnTitle.newsCenter}}<em class="right"></em></span>
+    <p>{{ companyInfo['NEWS_CENTER_'+locale] }}</p>
   </div>
   <div class="innewcon">
     <ul class="container clearfix">
@@ -68,7 +68,7 @@
   </div>
   <div class="container">
     <div class="inabcon">
-      <p>{{ companyInfo['COMPANY_BRIEF_DES_'+locale] }}</p>
+      <p>{{ companyInfo['ABOUT_US_'+locale] }}</p>
     </div>
     <a href="about.html">READ MORE</a>
   </div>

@@ -1,8 +1,7 @@
-import { DefaultFooter, getMenuData, getPageTitle } from '@ant-design/pro-layout';
+import { getMenuData, getPageTitle } from '@ant-design/pro-layout';
 import DocumentTitle from 'react-document-title';
 import Link from 'umi/link';
 import React from 'react';
-import SelectLang from '@/components/SelectLang';
 import { connect } from 'dva';
 import { formatMessage } from 'umi-plugin-react/locale';
 import logo from '../assets/logo.svg';
@@ -13,6 +12,7 @@ const UserLayout = props => {
     route = {
       routes: [],
     },
+    title,
   } = props;
   const { routes = [] } = route;
   const {
@@ -32,22 +32,18 @@ const UserLayout = props => {
       })}
     >
       <div className={styles.container}>
-        <div className={styles.lang}>
-          <SelectLang />
-        </div>
         <div className={styles.content}>
           <div className={styles.top}>
             <div className={styles.header}>
               <Link to="/">
                 <img alt="logo" className={styles.logo} src={logo} />
-                <span className={styles.title}>Ant Design</span>
+                <span className={styles.title}>{title}</span>
               </Link>
             </div>
-            <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+            <div className={styles.desc}>若忘记密码，请联系管理员</div>
           </div>
           {children}
         </div>
-        <DefaultFooter />
       </div>
     </DocumentTitle>
   );

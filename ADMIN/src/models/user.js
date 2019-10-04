@@ -41,6 +41,12 @@ const UserModel = {
         },
       };
     },
+    save(state, { payload }) {
+      return {
+        ...state,
+        ...payload,
+      };
+    },
   },
 };
 export default UserModel;

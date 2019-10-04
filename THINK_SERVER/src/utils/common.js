@@ -1,12 +1,12 @@
-
 const Common = {
   success(message) {
-    return {code: 0, message: message || '成功!'};
+    return { code: 0, message: message || '成功!' };
   },
   error(message) {
-    return {code: 0, message: message || '失败!'};
+    return { code: 0, message: message || '失败!' };
   },
-  ColumnTitle(lan) { // 栏目标题
+  ColumnTitle(lan) {
+    // 栏目标题
     if (lan === 'CN') {
       return {
         aboutUS: '关于我们',
@@ -14,6 +14,7 @@ const Common = {
         seeMore: '查看更过',
         home: '首页',
         news: '新闻动态',
+        newsCenter: '新闻中心',
         companyNew: '公司新闻',
         tradeNews: '行业新闻',
         device: '生产设备',
@@ -32,7 +33,6 @@ const Common = {
         submit: '提交',
         reset: '重置',
         product_detail: '产品详细'
-
       };
     } else {
       return {
@@ -59,11 +59,10 @@ const Common = {
         leave_meg: 'LEAVE MESSAGE',
         submit: 'SUBMIT',
         reset: 'RESET',
-        product_detail: 'PRODUCT DETAIL'
-
+        product_detail: 'PRODUCT DETAIL',
+        newsCenter: 'NEWS CENTER'
       };
     }
   }
-}
-;
-export {Common};
+};
+export { Common };
