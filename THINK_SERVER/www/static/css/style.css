@@ -498,9 +498,9 @@ img {
 }
 
 .inabcon {
-  height: 90px;
-  overflow: hidden;
-  text-align: center;
+  /* height: 90px; */
+  /* overflow: hidden; */
+  /* text-align: center; */
   font-size: 12px;
 }
 

@@ -20,9 +20,9 @@ class Page extends Component {
     const { text } = this.props;
     return (
       <div>
-        <Card title="基本信息" style={{ marginBottom: 10 }}>
+        {/* <Card title="基本信息" style={{ marginBottom: 10 }}>
           <div></div>
-        </Card>
+        </Card> */}
         <Card title="关于我们" style={{ marginBottom: 10 }}>
           <div className="link-box" onClick={() => this.handleAboutPage(1)}>
             公司简介

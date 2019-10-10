@@ -56,6 +56,7 @@ class Ueditor extends React.Component {
   };
 
   render() {
+    console.log(isDev);
     return (
       <ReactUeditor
         plugins={[
@@ -69,7 +70,7 @@ class Ueditor extends React.Component {
         uploadImage={this.uploadImage}
         onChange={this.updateEditorContent}
         onReady={this.onReady}
-        ueditorPath={`${window.location.origin}${isDev ? '' : '/ADMIN'}/ueditor`}
+        ueditorPath={`${window.location.origin}/ueditor`}
       />
     );
   }
