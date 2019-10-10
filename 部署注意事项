@@ -1,0 +1,2 @@
+1.nginx 部署时/api接口定向问题
+2.thinkjs在pm2运行的情况下，静态资源的访问 middleware.js handle: 'resource',enable: true
