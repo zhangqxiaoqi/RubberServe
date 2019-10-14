@@ -45,31 +45,33 @@
         </div>
       </div>
       <nav class="nav">
-        <ul class="container clearfix">
-          <li class="active"><a href="index.html">{{columnTitle.home}}</a></li>
-          <li><a href="about.html">{{columnTitle.aboutUS}}</a>
+        <ul class="container clearfix nva-ul">
+          <li class={{'active' if menuType==='index' else ''}}> <a onclick="changeMenu('index.html','index')"
+              href="javascript:;">{{columnTitle.home}}</a>
+          </li>
+          <li class={{'active' if menuType==='about' else ''}}><a href="javascript:;"
+              onclick="changeMenu('about.html','about')">{{columnTitle.aboutUS}}</a>
             <ul>
               <li><a href="about.html">{{columnTitle.companyProfile}}</a></li>
               <li><a href="honor.html">{{columnTitle.cultureculture}}</a></li>
               <li><a href="culture.html">{{columnTitle.culture}}</a></li>
             </ul>
           </li>
-          <li><a href="pro.html">{{columnTitle.productCenter}}</a>
+          <li class={{'active' if menuType==='pro' else ''}}><a href="javascript:;"
+              onclick="changeMenu('pro.html','pro')">{{columnTitle.productCenter}}</a>
           </li>
-          <li><a href="news.html">{{columnTitle.news}}</a>
+          <li class={{'active' if menuType==='news' else ''}}><a href="javascript:;"
+              onclick="changeMenu('news.html','news')">{{columnTitle.news}}</a>
             <ul>
               <li><a href="news.html">{{columnTitle.companyNew}}</a></li>
               <li><a href="news_industry.html">{{columnTitle.tradeNews}}</a></li>
             </ul>
           </li>
-          <li><a href="produce.html">{{columnTitle.device}}</a>
-            <!-- <ul>
-	    				<li><a href="produce.html">生产设备</a></li>
-	    				<li><a href="produce.html">生产设备</a></li>
-	    				<li><a href="produce.html">生产设备</a></li>
-	    			</ul> -->
+          <li class={{'active' if menuType==='produce' else ''}}><a href="javascript:;"
+              onclick="changeMenu('produce.html','produce')">{{columnTitle.device}}</a>
           </li>
-          <li><a href="contact.html">{{columnTitle.contact}}</a>
+          <li class={{'active' if menuType==='contact' else ''}}><a href="javascript:;"
+              onclick="changeMenu('contact.html','contact')">{{columnTitle.contact}}</a>
             <ul>
               <li><a href="contact.html">{{columnTitle.contactWay}}</a></li>
               <li><a href="contact.html#message">{{columnTitle.onlineMessage}}</a></li>
@@ -126,9 +128,9 @@
         Copyright(c)2019-2010 {{ companyInfo['COMPANY_NAME_'+locale] }}
         <img src="static/images/yu.png" alt="" />
         <div class="ferweima">
-          <img src="static/images/fewm.jpg" alt="" />
+          <!-- <img src="static/images/fewm.jpg" alt="" /> -->
           <div class="ewmwrap pic slideDown">
-            <img class="vcenter" src="static/images/erweima.jpg" alt="" />
+            <!-- <img class="vcenter" src="static/images/erweima.jpg" alt="" /> -->
           </div>
         </div>
       </div>
@@ -209,7 +211,8 @@
   </div>
 
   <!--Include Js-->
-  <script src="static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <!-- <script src="static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script> -->
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 
   <!--移动端导航-->
   <script src="static/js/jquery.mmenu.all.min.js" type="text/javascript" charset="utf-8"></script>
@@ -236,13 +239,21 @@
       $('input, textarea').placeholder();
       $('.Language a').click(function (e) {
         const lan = $(this).attr('data');
-        $.post("http://127.0.0.1/index/switchLanguage", {
+        $.post(`http://${window.location.host}/index/switchLanguage`, {
           lan: lan
         }, function (result) {
           location.reload();
         });
       });
     });
+
+    function changeMenu(url, type) {
+      $.post(`http://${window.location.host}/index/changeMenuType`, {
+        type: type
+      }, function (result) {
+        window.location.href = `http://${window.location.host}/${url}`;
+      });
+    }
   </script>
 
   <!--<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->

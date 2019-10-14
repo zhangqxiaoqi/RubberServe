@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 {% block main %}
 <!--banner-->
+{% if locale==='CN'%}
 <section class="banner">
-  <div><a href="#"><img src="static/images/sy_banner1.jpg" alt="" /></a></div>
-  <div><a href="#"><img src="static/images/sy_banner1.jpg" alt="" /></a></div>
-  <div><a href="#"><img src="static/images/sy_banner1.jpg" alt="" /></a></div>
+  <div><a href="#"><img src="static/images/banner/1_CN.jpg" alt="" /></a></div>
+  <div><a href="#"><img src="static/images/banner/2_CN.jpg" alt="" /></a></div>
+  <div><a href="#"><img src="static/images/banner/3_CN.jpg" alt="" /></a></div>
 </section>
-
+{% else %}
+<section class="banner">
+  <div><a href="#"><img src="static/images/banner/1_EN.jpg" alt="" /></a></div>
+  <div><a href="#"><img src="static/images/banner/2_EN.jpg" alt="" /></a></div>
+</section>
+{% endif %}
 <!-- <div class="inn clearfix">
    
    <div class="col-md-3 pic"><a href="pro.html"><img class="vcenter" src="static/images/index1.jpg" alt="" /></a></div>

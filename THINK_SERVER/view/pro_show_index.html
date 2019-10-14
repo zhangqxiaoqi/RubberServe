@@ -4,9 +4,6 @@
   .pro_big_back {
     width: 100%;
     height: 566px;
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
   }
 </style>
 <!--banner-->
@@ -29,8 +26,9 @@
             <ul>
               {% for item in imgs%}
               <li>
-                <div class="pro_big_back" style={{'background-image:url('+item.url+')'}}></div>
-                <!-- <img class="vcenter" src={{item.url}} alt="" /> -->
+                <div class="pro_big_back">
+                  <img class="vcenter " src={{item.url}} alt="" /></div>
+
               </li>
 
               {% endfor %}

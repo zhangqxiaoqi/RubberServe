@@ -10,8 +10,13 @@ module.exports = class extends think.Controller {
     if (!(await this.session('language'))) {
       await this.session('language', 'CN');
     }
+    // menuType
+    if (!(await this.session('menuType'))) {
+      await this.session('menuType', 'index');
+    }
     const locale = await this.session('language');
+    const menuType = await this.session('menuType');
     const columnTitle = Common.ColumnTitle(locale);
-    this.assign({ companyInfo, locale, columnTitle });
+    this.assign({ companyInfo, locale, columnTitle, menuType });
   }
 };
