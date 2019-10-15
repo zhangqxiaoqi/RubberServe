@@ -129,7 +129,7 @@
         alert('留言不能超过1000个字符!');
         return;
       }
-      $.post(`"http://${window.location.host}/message/save"`, {
+      $.post(`http://${window.location.host}/message/save`, {
         NAME,
         PHONE,
         ADDRESS,

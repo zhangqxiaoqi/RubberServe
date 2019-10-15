@@ -30,7 +30,7 @@
       <div class="logo">
         <div class="container clearfix">
           <a href="index.html" class="pull-left logoa"><img style="height: 80px" src="static/images/logo.png"
-              alt="" /></a>
+              alt="" />{{ companyInfo['COMPANY_NAME_'+locale] }}</a>
           <div class="Language pull-right">
             {% if locale == 'CN' %}
             <a class="cn active" data="CN" href="javascript:;">中文</a>
@@ -52,9 +52,11 @@
           <li class={{'active' if menuType==='about' else ''}}><a href="javascript:;"
               onclick="changeMenu('about.html','about')">{{columnTitle.aboutUS}}</a>
             <ul>
-              <li><a href="about.html">{{columnTitle.companyProfile}}</a></li>
-              <li><a href="honor.html">{{columnTitle.cultureculture}}</a></li>
-              <li><a href="culture.html">{{columnTitle.culture}}</a></li>
+              <li><a href="javascript:;" onclick="changeMenu('about.html','about')">{{columnTitle.companyProfile}}</a>
+              </li>
+              <li><a href="javascript:;" onclick="changeMenu('honor.html','about')">{{columnTitle.cultureculture}}</a>
+              </li>
+              <li><a href="javascript:;" onclick="changeMenu('culture.html','about')">{{columnTitle.culture}}</a></li>
             </ul>
           </li>
           <li class={{'active' if menuType==='pro' else ''}}><a href="javascript:;"
@@ -63,8 +65,9 @@
           <li class={{'active' if menuType==='news' else ''}}><a href="javascript:;"
               onclick="changeMenu('news.html','news')">{{columnTitle.news}}</a>
             <ul>
-              <li><a href="news.html">{{columnTitle.companyNew}}</a></li>
-              <li><a href="news_industry.html">{{columnTitle.tradeNews}}</a></li>
+              <li><a href="javascript:;" onclick="changeMenu('news.html','news')">{{columnTitle.companyNew}}</a></li>
+              <li><a href="javascript:;" onclick="changeMenu('news_industry.html','news')">{{columnTitle.tradeNews}}</a>
+              </li>
             </ul>
           </li>
           <li class={{'active' if menuType==='produce' else ''}}><a href="javascript:;"
@@ -73,8 +76,10 @@
           <li class={{'active' if menuType==='contact' else ''}}><a href="javascript:;"
               onclick="changeMenu('contact.html','contact')">{{columnTitle.contact}}</a>
             <ul>
-              <li><a href="contact.html">{{columnTitle.contactWay}}</a></li>
-              <li><a href="contact.html#message">{{columnTitle.onlineMessage}}</a></li>
+              <li><a href="javascript:;" onclick="changeMenu('contact.html','contact')">{{columnTitle.contactWay}}</a>
+              </li>
+              <li><a href="javascript:;"
+                  onclick="changeMenu('contact.html#message','contact')">{{columnTitle.onlineMessage}}</a></li>
             </ul>
           </li>
         </ul>
@@ -96,27 +101,29 @@
     <div class="footernav">
       <div class="container">
         <dl>
-          <dt><a href="index.html">{{columnTitle.home}}</a></dt>
-          <dd><a href="about.html">{{columnTitle.aboutUS}}</a></dd>
-          <dd><a href="about.html">{{columnTitle.companyProfile}}</a></dd>
-          <dd><a href="honor.html">{{columnTitle.cultureculture}}</a></dd>
-          <dd><a href="culture.html">{{columnTitle.culture}}</a></dd>
+          <dt><a href="javascript:;" onclick="changeMenu('index.html','index')">{{columnTitle.home}}</a></dt>
+          <dd><a href="javascript:;" onclick="changeMenu('about.html','about')">{{columnTitle.aboutUS}}</a></dd>
+          <dd><a href="javascript:;" onclick="changeMenu('about.html','about')">{{columnTitle.companyProfile}}</a></dd>
+          <dd><a href="javascript:;" onclick="changeMenu('honor.html','about')">{{columnTitle.cultureculture}}</a></dd>
+          <dd><a href="javascript:;" onclick="changeMenu('culture.html','about')">{{columnTitle.culture}}</a></dd>
         </dl>
         <dl>
-          <dt><a href="pro.html">{{columnTitle.productCenter}}</a></dt>
+          <dt><a href="javascript:;" onclick="changeMenu('pro.html','pro')">{{columnTitle.productCenter}}</a></dt>
         </dl>
         <dl>
-          <dt><a href="news.html">{{columnTitle.news}}</a></dt>
-          <dd><a href="news.html">{{columnTitle.companyNew}}</a></dd>
-          <dd><a href="news.html">{{columnTitle.tradeNews}}</a></dd>
+          <dt><a href="javascript:;" onclick="changeMenu('news.html','news')">{{columnTitle.news}}</a></dt>
+          <dd><a href="javascript:;" onclick="changeMenu('news.html','news')">{{columnTitle.companyNew}}</a></dd>
+          <dd><a href="javascript:;" onclick="changeMenu('news_industry.html','news')">{{columnTitle.tradeNews}}</a>
+          </dd>
         </dl>
         <dl>
-          <dt><a href="produce.html">{{columnTitle.device}}</a></dt>
+          <dt><a href="javascript:;" onclick="changeMenu('produce.html','produce')">{{columnTitle.device}}</a></dt>
         </dl>
         <dl>
-          <dt><a href="contact.html">{{columnTitle.contact}}</a></dt>
-          <dd><a href="contact.html">{{columnTitle.contactWay}}</a></dd>
-          <dd><a href="contact.html#message">{{columnTitle.onlineMessage}}</a></dd>
+          <dt><a href="javascript:;" onclick="changeMenu('contact.html','contact')">{{columnTitle.contact}}</a></dt>
+          <dd><a href="javascript:;" onclick="changeMenu('contact.html','contact')">{{columnTitle.contactWay}}</a></dd>
+          <dd><a href="javascript:;"
+              onclick="changeMenu('contact.html#message','contact')">{{columnTitle.onlineMessage}}</a></dd>
         </dl>
       </div>
     </div>
