@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block main %}
+<!--banner-->
+<section class="banner">
+  <img src="static/images/productionbanner.jpg" alt="" />
+</section>
+<div class="ny">
+
+  <div class="ptionshow">
+    <div class="contacttit">
+      <span>{{columnTitle.device}}</span>
+    </div>
+    <div class="container">
+      <!-- <div class="imgbox"><img src={{info.COVER}} alt="" /></div> -->
+      <div class="ptionshowtxt">
+        {{info['CONTENT_'+locale]|safe}}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

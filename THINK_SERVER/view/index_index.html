@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block main %}
+<!--banner-->
+{% if locale==='CN'%}
+<section class="banner">
+  <div><a href="#"><img src="static/images/banner/1_CN.jpg" alt="" /></a></div>
+  <div><a href="#"><img src="static/images/banner/2_CN.jpg" alt="" /></a></div>
+  <div><a href="#"><img src="static/images/banner/3_CN.jpg" alt="" /></a></div>
+</section>
+{% else %}
+<section class="banner">
+  <div><a href="#"><img src="static/images/banner/1_EN.jpg" alt="" /></a></div>
+  <div><a href="#"><img src="static/images/banner/2_EN.jpg" alt="" /></a></div>
+</section>
+{% endif %}
+<!-- <div class="inn clearfix">
+   
+   <div class="col-md-3 pic"><a href="pro.html"><img class="vcenter" src="static/images/index1.jpg" alt="" /></a></div>
+   <div class="col-md-3 pic"><a href="pro.html"><img class="vcenter" src="static/images/index2.jpg" alt="" /></a></div>
+   <div class="col-md-3 pic"><a href="pro.html"><img class="vcenter" src="static/images/index3.jpg" alt="" /></a></div>
+   <div class="col-md-3 pic"><a href="pro.html"><img class="vcenter" src="static/images/index4.jpg" alt="" /></a></div>
+   
+ </div> -->
+
+<!--产品中心-->
+<div class="inpro">
+  <div class="inptit">
+    <span><em>{{columnTitle.productCenter}}</em></span>
+    <p>{{companyInfo['PRODUCT_CENTER_'+locale]|safe}}</p>
+    <a href="pro.html">{{columnTitle.seeMore}}</a>
+  </div>
+  <div class="inpcon clearfix">
+    <div class="container">
+      {% for item in productImages %}
+      <div class="col-md-3">
+        <div class="pic"><a href={{"pro_show.html?ID="+item.ID}}><img class="vcenter" src="{{item.IMGS[0].url}}"
+              alt="" /></a></div>
+        <a class="inpca" href={{"pro_show.html?ID="+item.ID}}>{{ item['TITLE_'+locale] }}</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!--新闻中心-->
+<div class="innews">
+  <div class="inptit">
+    <span><em class="left"></em>{{columnTitle.newsCenter}}<em class="right"></em></span>
+    <p>{{ companyInfo['NEWS_CENTER_'+locale]|safe }}</p>
+  </div>
+  <div class="innewcon">
+    <ul class="container clearfix">
+      {% for item in newsList %}
+      <li>
+        <div class="pic"><a href={{"news_show.html?ID="+item.ID}}><img class="vcenter" src={{item.COVER}} alt="" /></a>
+        </div>
+        <div class="innewtxt">
+          <a href={{"news_show.html?ID="+item.ID}}>{{item['TITLE_'+locale]}}</a>
+          <span>{{item.CREATE_TIME}}</span>
+          <p>
+            {{ (item['DIGEST_'+locale].substring(0,20)+'...') if item['DIGEST_'+locale].length>20 else item['DIGEST_'+locale]}}
+          </p>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<!--关于我们-->
+<div class="inabout">
+  <div class="inptit">
+    <span><em>{{columnTitle.aboutUS}}</em></span>
+  </div>
+  <div class="container">
+    <div class="inabcon">
+      <p>{{ companyInfo['ABOUT_US_'+locale]|safe}}</p>
+    </div>
+    <a href="about.html">READ MORE</a>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,2 +1,0 @@
-# RubberServe
-thinkjs react 

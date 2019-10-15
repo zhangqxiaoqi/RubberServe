@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block main %}
+	<!--banner-->
+	<section class="banner">
+    <img src="static/images/newsbanner.jpg" alt="" />
+ </section>
+ 
+ <!--内页面包屑-->
+ <!-- <div class="mbx">
+   <div class="container">
+     您当前的位置：
+     <a href="index.html">首页</a> > 
+     <a href="about.html">关于我们</a> > 
+     <span>公司简介</span>
+   </div>
+ </div> -->
+ <div class="ny">
+		
+  <div class="news">
+    <div class="contacttit">
+      <span>{{columnTitle.tradeNews}}</span>
+    </div>
+    <div class="container innewcon">
+      <ul class="clearfix">
+        
+        {% for item in newsList.data %}
+          <li>
+            <div class="pic"><a href={{"news_show.html?ID="+item.ID}}><img class="vcenter" src={{item.COVER}} alt="" /></a></div>
+            <div class="innewtxt">
+              <a href={{"news_show.html?ID="+item.ID}}>{{item['TITLE_'+locale]}}</a>
+              <span>{{item.CREATE_TIME}}</span>
+              <p>{{ (item['CONTENT_'+locale].substring(0,20)+'...') if item['CONTENT_'+locale].length>20 else item['CONTENT_'+locale]}}</p>
+            </div>
+          </li>
+        {% endfor %}
+        
+      </ul>
+      {{pagination | safe}}
+   
+    </div>
+  </div>
+</div>
+
+ 
+ 
+
+{% endblock %}

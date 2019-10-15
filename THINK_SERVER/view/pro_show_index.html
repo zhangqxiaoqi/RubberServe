@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block main %}
+<style>
+  .pro_big_back {
+    width: 100%;
+    height: 566px;
+  }
+</style>
+<!--banner-->
+<!--banner-->
+<section class="banner">
+  <img src="static/images/probanner.jpg" alt="" />
+</section>
+
+
+<div class="ny">
+
+  <div class="pro_show">
+    <div class="container">
+      <div class="pshowtit">
+        {{info['TITLE_'+locale]}}
+      </div>
+      <div class="procon">
+        <div class="proimg clearfix">
+          <div class="big">
+            <ul>
+              {% for item in imgs%}
+              <li>
+                <div class="pro_big_back">
+                  <img class="vcenter " src={{item.url}} alt="" /></div>
+
+              </li>
+
+              {% endfor %}
+
+            </ul>
+          </div>
+          <div class="small">
+            {% for item in imgs%}
+            <span><img class="vcenter" src={{item.url}} alt="" /></span>
+            {% endfor %}
+
+          </div>
+        </div>
+
+        <div class="parameter">
+          <div class="protit">
+            <span>{{columnTitle.product_detail}}</span>
+          </div>
+          {{info['CONTENT_'+locale]|safe}}
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+{% endblock %}
