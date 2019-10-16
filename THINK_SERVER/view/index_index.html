@@ -72,10 +72,12 @@
   <div class="inptit">
     <span><em>{{columnTitle.aboutUS}}</em></span>
   </div>
-  <div class="container">
+  <div class="container-box">
     <div class="inabcon">
-      <p>{{ companyInfo['ABOUT_US_'+locale]|safe}}</p>
+      <div class="content">{{ companyInfo['ABOUT_US_'+locale]|safe}}</div>
+      <div class="about-img"><img src="static/images/about.jpg" /></div>
     </div>
+
     <a href="about.html">READ MORE</a>
   </div>
 </div>

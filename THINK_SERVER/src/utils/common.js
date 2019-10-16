@@ -11,7 +11,7 @@ const Common = {
       return {
         aboutUS: '关于我们',
         productCenter: '产品中心',
-        seeMore: '查看更过',
+        seeMore: '查看更多',
         home: '首页',
         news: '新闻动态',
         newsCenter: '新闻中心',

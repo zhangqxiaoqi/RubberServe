@@ -30,7 +30,7 @@
       <div class="logo">
         <div class="container clearfix">
           <a href="index.html" class="pull-left logoa"><img style="height: 80px" src="static/images/logo.png"
-              alt="" />{{ companyInfo['COMPANY_NAME_'+locale] }}</a>
+              alt="" /><span style="font-size:16px;">{{ companyInfo['COMPANY_NAME_'+locale] }}</span></a>
           <div class="Language pull-right">
             {% if locale == 'CN' %}
             <a class="cn active" data="CN" href="javascript:;">中文</a>
@@ -92,7 +92,8 @@
     <!--底部开始-->
     <div class="footer-logo">
       <div class="container">
-        <a href="index.html"><img style="height: 80px" src="static/images/logo.png" alt="" /></a>
+        <!-- <a href="index.html"><img style="height: 80px" src="static/images/logo.png" alt="" /></a> -->
+        <a>{{columnTitle.address}}：南京市高淳区古柏开发区 {{columnTitle.postcode}}：211316</a>
         <span>{{columnTitle.phone}}：<b>{{companyInfo.PHONE}}</b></span>
       </div>
     </div>
@@ -124,6 +125,9 @@
           <dd><a href="javascript:;" onclick="changeMenu('contact.html','contact')">{{columnTitle.contactWay}}</a></dd>
           <dd><a href="javascript:;"
               onclick="changeMenu('contact.html#message','contact')">{{columnTitle.onlineMessage}}</a></dd>
+          <dd>
+            <img style="height: 160px" src="static/images/wx.jpg" alt="" />
+          </dd>
         </dl>
       </div>
     </div>

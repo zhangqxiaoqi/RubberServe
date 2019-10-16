@@ -16,7 +16,7 @@
 }
 
 body {
-  font-family: "microsoft yahei";
+  font-family: 'microsoft yahei';
   overflow-x: hidden;
 }
 
@@ -85,8 +85,22 @@ img {
   border: 0;
 }
 
-.container {
+.container-box {
   width: 1200px;
+  margin: 0 auto;
+}
+.container-box .inabcon {
+  width: 100%;
+  height: 360px;
+  overflow: hidden;
+  display: flex;
+}
+.container-box .inabcon .content {
+  flex: 1;
+  padding-right: 10px;
+}
+.container-box .inabcon .about-img {
+  width: 500px;
 }
 
 .pic {
@@ -96,7 +110,7 @@ img {
 
 .pic:after {
   display: block;
-  content: "";
+  content: '';
 }
 
 /*-header-*/
@@ -353,6 +367,8 @@ img {
   height: 20px;
   overflow: hidden;
   transition: 0.5s;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .inpcon .col-md-3:hover img {
@@ -737,7 +753,7 @@ img {
 }
 
 .fenlei .menu .cur:after {
-  content: "";
+  content: '';
   display: inline-block;
   width: 50%;
   height: 4px;
@@ -821,6 +837,8 @@ img {
   height: 35px;
   overflow: hidden;
   transition: 0.5s;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .pro ul li:hover img {
@@ -896,7 +914,7 @@ img {
 }
 
 .proimg .big ul li:after {
-  content: "";
+  content: '';
   display: block;
   /* padding-bottom: 54.9%; */
 }
@@ -915,7 +933,7 @@ img {
 }
 
 .proimg .small span:after {
-  content: "";
+  content: '';
   display: block;
   padding-bottom: 51.5%;
 }
@@ -984,7 +1002,7 @@ img {
   width: 95%;
   border: 1px solid #cfcfcf;
   font-weight: 100;
-  font-family: "微软雅黑";
+  font-family: '微软雅黑';
   padding-left: 10px;
   line-height: 40px;
   height: 40px;
@@ -999,7 +1017,7 @@ img {
 .inquiry .inquirycon label textarea {
   font-size: 14px;
   font-weight: 100;
-  font-family: "微软雅黑";
+  font-family: '微软雅黑';
   padding-left: 10px;
   border: 1px solid #cfcfcf;
   width: 100%;
@@ -1252,7 +1270,7 @@ img {
   height: 55px;
   background: url(../images/messagebg.jpg) no-repeat 95% center;
   font-size: 18px;
-  font-family: "微软雅黑";
+  font-family: '微软雅黑';
   font-weight: 100;
   color: #a0a0a0;
   transition: 0.5s;
@@ -1386,7 +1404,7 @@ img {
 
 .ption ul li:after {
   padding-bottom: 64.55696202531645%;
-  content: "";
+  content: '';
   display: block;
 }
 
