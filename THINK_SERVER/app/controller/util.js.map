@@ -1,0 +1,48 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\controller\\util.js"
+    ],
+    "names": [
+        "fs",
+        "require",
+        "config",
+        "module",
+        "exports",
+        "think",
+        "Controller",
+        "uploadAction",
+        "isEmpty",
+        "file",
+        "extend",
+        "savepath",
+        "ROOT_PATH",
+        "filepath",
+        "path",
+        "filename",
+        "name",
+        "suffix",
+        "substr",
+        "lastIndexOf",
+        "newfilename",
+        "Math",
+        "random",
+        "toString",
+        "datas",
+        "readFileSync",
+        "writeFileSync",
+        "dbPath",
+        "sitDomain",
+        "json",
+        "code",
+        "data",
+        "status",
+        "url",
+        "thumbUrl"
+    ],
+    "mappings": ";;AAAA,MAAMA,KAAKC,QAAQ,IAAR,CAAX;AACA,MAAMC,SAASD,QAAQ,kBAAR,CAAf;;AAEAE,OAAOC,OAAP,GAAiB,cAAcC,MAAMC,UAApB,CAA+B;AACxCC,cAAN,GAAqB;AAAA;;AAAA;AACnB,UAAI,CAACF,MAAMG,OAAN,CAAc,MAAKC,IAAL,CAAU,YAAV,CAAd,CAAL,EAA6C;AAC3C;AACA,cAAMA,OAAOJ,MAAMK,MAAN,CAAa,EAAb,EAAiB,MAAKD,IAAL,CAAU,YAAV,CAAjB,CAAb;AACA;AACA,cAAME,WAAWN,MAAMO,SAAN,GAAkB,wBAAnC;AACA,cAAMC,WAAWJ,KAAKK,IAAtB,CAL2C,CAKf;AAC5B,cAAMC,WAAWN,KAAKO,IAAtB,CAN2C,CAMf;AAC5B,cAAMC,SAASF,SAASG,MAAT,CAAgBH,SAASI,WAAT,CAAqB,GAArB,IAA4B,CAA5C,CAAf,CAP2C,CAOoB;AAC/D,cAAMC,cACJC,KAAKC,MAAL,GACGC,QADH,CACY,EADZ,EAEGL,MAFH,CAEU,CAFV,IAGA,GAHA,GAIAD,MALF;;AAOA;AACA,cAAMO,QAAQxB,GAAGyB,YAAH,CAAgBZ,QAAhB,CAAd;AACA;AACAb,WAAG0B,aAAH,CAAiBf,WAAWS,WAA5B,EAAyCI,KAAzC;AACA,cAAMG,SAAU,GAAEzB,OAAO0B,SAAU,qBAAoBR,WAAY,EAAnE;AACA,eAAO,MAAKS,IAAL,CAAU;AACfC,gBAAM,GADS;AAEfC,gBAAM;AACJf,kBAAMI,WADF;AAEJY,oBAAQ,MAFJ;AAGJC,iBAAKN,MAHD;AAIJO,sBAAUP;AAJN;AAFS,SAAV,CAAP;AASD;AA9BkB;AA+BpB;AAhC6C,CAAhD",
+    "file": "..\\..\\src\\controller\\util.js",
+    "sourcesContent": [
+        "const fs = require('fs');\r\nconst config = require('../config/config');\r\n\r\nmodule.exports = class extends think.Controller {\r\n  async uploadAction() {\r\n    if (!think.isEmpty(this.file('uploadFile'))) {\r\n      // 进行压缩等处理\r\n      const file = think.extend({}, this.file('uploadFile'));\r\n      // 保存文件的路径\r\n      const savepath = think.ROOT_PATH + '/www/static/uploading/';\r\n      const filepath = file.path; // 文件路径\r\n      const filename = file.name; // 文件名\r\n      const suffix = filename.substr(filename.lastIndexOf('.') + 1); // 文件后缀\r\n      const newfilename =\r\n        Math.random()\r\n          .toString(36)\r\n          .substr(2) +\r\n        '.' +\r\n        suffix;\r\n\r\n      // 读文件\r\n      const datas = fs.readFileSync(filepath);\r\n      // 写文件\r\n      fs.writeFileSync(savepath + newfilename, datas);\r\n      const dbPath = `${config.sitDomain}/static/uploading/${newfilename}`;\r\n      return this.json({\r\n        code: 200,\r\n        data: {\r\n          name: newfilename,\r\n          status: 'done',\r\n          url: dbPath,\r\n          thumbUrl: dbPath\r\n        }\r\n      });\r\n    }\r\n  }\r\n};\r\n"
+    ]
+}

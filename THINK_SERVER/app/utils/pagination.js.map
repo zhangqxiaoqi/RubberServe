@@ -1,0 +1,53 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\utils\\pagination.js"
+    ],
+    "names": [
+        "helper",
+        "require",
+        "getPageUrl",
+        "options",
+        "ctx",
+        "pageUrl",
+        "url",
+        "prefix",
+        "querys",
+        "name",
+        "query",
+        "push",
+        "escapeHtml",
+        "join",
+        "length",
+        "getPageIndex",
+        "pagerData",
+        "num",
+        "pageNum",
+        "page",
+        "currentPage",
+        "totalPages",
+        "pageIndex",
+        "start",
+        "stop",
+        "i",
+        "module",
+        "exports",
+        "Object",
+        "assign",
+        "desc",
+        "class",
+        "text",
+        "next",
+        "prev",
+        "total",
+        "html",
+        "replace",
+        "p",
+        "last"
+    ],
+    "mappings": "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",
+    "file": "..\\..\\src\\utils\\pagination.js",
+    "sourcesContent": [
+        "const helper = require('think-helper');\r\n\r\n/**\r\n * get page url\r\n * @param  {Object} options []\r\n * @param  {Object} http    []\r\n * @return {String}         []\r\n */\r\nconst getPageUrl = (options, ctx) => {\r\n  let pageUrl = options.url;\r\n  if (!pageUrl) {\r\n    let prefix = (options.prefix || '') + '?';\r\n    const querys = [];\r\n    for (const name in ctx.query) {\r\n      if (name === 'page') {\r\n        continue;\r\n      }\r\n      querys.push(helper.escapeHtml(name) + '=' + helper.escapeHtml(ctx.query[name]));\r\n    }\r\n    prefix += querys.join('&');\r\n    if (querys.length) {\r\n      prefix += '&';\r\n    }\r\n    pageUrl = prefix + 'page=__PAGE__';\r\n  }\r\n  return pageUrl;\r\n};\r\n\r\n/**\r\n * get page index\r\n * @param  {Object} pagerData []\r\n * @param  {Object} options   []\r\n * @return {Array}           []\r\n */\r\nconst getPageIndex = (pagerData, options) => {\r\n  const num = options.pageNum || 2;\r\n  const page = pagerData.currentPage | 0 || 1;\r\n  const totalPages = pagerData.totalPages;\r\n  const pageIndex = [];\r\n  let start = page - num;\r\n  let stop = page + num;\r\n\r\n  if (start <= 1) {\r\n    start = 1;\r\n    stop = start + num * 2 + 1;\r\n  }\r\n\r\n  if (stop >= totalPages) {\r\n    stop = totalPages;\r\n    start = totalPages - num * 2 - 1;\r\n  }\r\n\r\n  for (let i = start; i <= stop; i++) {\r\n    if (i >= 1 && i <= totalPages) {\r\n      pageIndex.push(i);\r\n    }\r\n  }\r\n  return pageIndex;\r\n};\r\n\r\n/**\r\n * thinkjs pagenation\r\n * @param  {Object} pagerData [pagerData by countSelect]\r\n * @param  {Object} ctx      []\r\n * @param  {Object} options   []\r\n * @return {String}           []\r\n */\r\nmodule.exports = (pagerData, ctx, options) => {\r\n  if (pagerData.totalPages <= 1) return '';\r\n\r\n  options = Object.assign({\r\n    desc: false, // show desc\r\n    pageNum: 1,\r\n    url: '',\r\n    class: '',\r\n    text: {\r\n      next: 'Next',\r\n      prev: 'Prev',\r\n      total: 'count: __COUNT__ , pages: __PAGE__'\r\n    }\r\n  }, options);\r\n  const pageUrl = getPageUrl(options, ctx);\r\n  const currentPage = pagerData.currentPage | 0 || 1;\r\n\r\n  let html = `<div class=\"page\">`;\r\n  if (options.class) {\r\n    html = `<div class=\"page ${options.class}\">`;\r\n  }\r\n  // if (options.desc) {\r\n  //   const total = options.text.total.replace('__COUNT__', pagerData.count).replace('__PAGE__', pagerData.totalPages);\r\n  //   html += `<li class=\"disabled\"><span>${total}</span></li>`;\r\n  // }\r\n  if (currentPage > 1) {\r\n    html += `<a href=\"${pageUrl.replace('__PAGE__', currentPage - 1)}\">${options.text.prev}</a>`;\r\n  }\r\n\r\n  const pageIndex = getPageIndex(pagerData, options);\r\n  if (pageIndex[0] > 1) {\r\n    html += `<a href=\"${pageUrl.replace('__PAGE__', 1)}\">1</a>`;\r\n  }\r\n  if (pageIndex[0] > 2) {\r\n    html += `<span>...</span>`;\r\n  }\r\n\r\n  for (let i = 0, length = pageIndex.length; i < length; i++) {\r\n    const p = pageIndex[i];\r\n    if (p === currentPage) {\r\n      html += `<a class=\"current\" href=\"${pageUrl.replace('__PAGE__', p)}\">${p}</a>`;\r\n    } else {\r\n      html += `<a  href=\"${pageUrl.replace('__PAGE__', p)}\">${p}</a>`;\r\n    }\r\n  }\r\n  if (pageIndex.length > 1) {\r\n    const last = pageIndex[pageIndex.length - 1];\r\n    if (last < (pagerData.totalPages - 1)) {\r\n      html += `<span>...</span>`;\r\n    }\r\n    if (last < pagerData.totalPages) {\r\n      html += `<a href=\"${pageUrl.replace('__PAGE__', pagerData.totalPages)}\">${pagerData.totalPages}</a>`;\r\n    }\r\n  }\r\n  if (currentPage < pagerData.totalPages) {\r\n    html += `<a href=\"${pageUrl.replace('__PAGE__', currentPage + 1)}\">${options.text.next}</a>`;\r\n  }\r\n  html += '</div>';\r\n  return html;\r\n};\r\n"
+    ]
+}

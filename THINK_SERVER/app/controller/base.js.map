@@ -1,0 +1,30 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\controller\\base.js"
+    ],
+    "names": [
+        "fs",
+        "require",
+        "module",
+        "exports",
+        "think",
+        "Controller",
+        "__before",
+        "companyInfo",
+        "model",
+        "find",
+        "session",
+        "locale",
+        "menuType",
+        "columnTitle",
+        "Common",
+        "ColumnTitle",
+        "assign"
+    ],
+    "mappings": "AAAA;;;;AACA,MAAMA,KAAKC,QAAQ,IAAR,CAAX;;AAEAC,OAAOC,OAAP,GAAiB,cAAcC,MAAMC,UAApB,CAA+B;AACxCC,UAAN,GAAiB;AAAA;;AAAA;AACf;AACA,YAAMC,cAAc,MAAM,MAAKC,KAAL,CAAW,cAAX,EAA2BC,IAA3B,EAA1B;;AAEA;AACA,UAAI,EAAE,MAAM,MAAKC,OAAL,CAAa,UAAb,CAAR,CAAJ,EAAuC;AACrC,cAAM,MAAKA,OAAL,CAAa,UAAb,EAAyB,IAAzB,CAAN;AACD;AACD;AACA,UAAI,EAAE,MAAM,MAAKA,OAAL,CAAa,UAAb,CAAR,CAAJ,EAAuC;AACrC,cAAM,MAAKA,OAAL,CAAa,UAAb,EAAyB,OAAzB,CAAN;AACD;AACD,YAAMC,SAAS,MAAM,MAAKD,OAAL,CAAa,UAAb,CAArB;AACA,YAAME,WAAW,MAAM,MAAKF,OAAL,CAAa,UAAb,CAAvB;AACA,YAAMG,cAAcC,eAAOC,WAAP,CAAmBJ,MAAnB,CAApB;AACA,YAAKK,MAAL,CAAY,EAAET,WAAF,EAAeI,MAAf,EAAuBE,WAAvB,EAAoCD,QAApC,EAAZ;AAfe;AAgBhB;AAjB6C,CAAhD",
+    "file": "..\\..\\src\\controller\\base.js",
+    "sourcesContent": [
+        "import { Common } from '../utils/common.js';\r\nconst fs = require('fs');\r\n\r\nmodule.exports = class extends think.Controller {\r\n  async __before() {\r\n    // 获取公司基础信息\r\n    const companyInfo = await this.model('company_info').find();\r\n\r\n    // 初始化session，用于标示当前的语言版本，默认cn\r\n    if (!(await this.session('language'))) {\r\n      await this.session('language', 'CN');\r\n    }\r\n    // menuType\r\n    if (!(await this.session('menuType'))) {\r\n      await this.session('menuType', 'index');\r\n    }\r\n    const locale = await this.session('language');\r\n    const menuType = await this.session('menuType');\r\n    const columnTitle = Common.ColumnTitle(locale);\r\n    this.assign({ companyInfo, locale, columnTitle, menuType });\r\n  }\r\n};\r\n"
+    ]
+}

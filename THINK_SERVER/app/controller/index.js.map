@@ -1,0 +1,39 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\controller\\index.js"
+    ],
+    "names": [
+        "Base",
+        "require",
+        "module",
+        "exports",
+        "indexAction",
+        "user",
+        "model",
+        "where",
+        "USER_NAME",
+        "find",
+        "proList",
+        "controller",
+        "homeAction",
+        "newsList",
+        "assign",
+        "productImages",
+        "display",
+        "changeMenuTypeAction",
+        "type",
+        "post",
+        "session",
+        "json",
+        "Common",
+        "success",
+        "switchLanguageAction",
+        "lan"
+    ],
+    "mappings": "AAAA;;;;AAEA,MAAMA,OAAOC,QAAQ,WAAR,CAAb;AACAC,OAAOC,OAAP,GAAiB,cAAcH,IAAd,CAAmB;AAC5BI,aAAN,GAAoB;AAAA;;AAAA;AAClB,YAAMC,OAAO,MAAM,MAAKC,KAAL,CAAW,aAAX,EAChBC,KADgB,CACV,EAAEC,WAAW,OAAb,EADU,EAEhBC,IAFgB,EAAnB;AAGA;AACA,YAAMC,UAAU,MAAM,MAAKC,UAAL,CAAgB,KAAhB,EAAuBC,UAAvB,EAAtB;AACA,YAAMC,WAAW,MAAM,MAAKF,UAAL,CAAgB,MAAhB,EAAwBC,UAAxB,EAAvB;;AAEA,YAAKE,MAAL,CAAY;AACVT,cAAMA,IADI;AAEVU,uBAAeL,OAFL;AAGVG;AAHU,OAAZ;AAKA,aAAO,MAAKG,OAAL,EAAP;AAbkB;AAcnB;AACD;AACMC,sBAAN,GAA6B;AAAA;;AAAA;AAC3B,YAAMC,OAAO,OAAKC,IAAL,CAAU,MAAV,CAAb;AACA,YAAM,OAAKC,OAAL,CAAa,UAAb,EAAyBF,IAAzB,CAAN;AACA,aAAO,OAAKG,IAAL,CAAUC,eAAOC,OAAP,EAAV,CAAP;AAH2B;AAI5B;;AAED;AACMC,sBAAN,GAA6B;AAAA;;AAAA;AAC3B,YAAMC,MAAM,OAAKN,IAAL,CAAU,KAAV,CAAZ;AACA,YAAM,OAAKC,OAAL,CAAa,UAAb,EAAyBK,GAAzB,CAAN;AACA,aAAO,OAAKJ,IAAL,CAAUC,eAAOC,OAAP,EAAV,CAAP;AAH2B;AAI5B;AA5BiC,CAApC",
+    "file": "..\\..\\src\\controller\\index.js",
+    "sourcesContent": [
+        "import { Common } from '../utils/common.js';\r\n\r\nconst Base = require('./base.js');\r\nmodule.exports = class extends Base {\r\n  async indexAction() {\r\n    const user = await this.model('rubber_user')\r\n      .where({ USER_NAME: 'admin' })\r\n      .find();\r\n    // const companyInfo = await this.model('company_info').find();\r\n    const proList = await this.controller('pro').homeAction();\r\n    const newsList = await this.controller('news').homeAction();\r\n\r\n    this.assign({\r\n      user: user,\r\n      productImages: proList,\r\n      newsList\r\n    });\r\n    return this.display();\r\n  }\r\n  // 切换菜单\r\n  async changeMenuTypeAction() {\r\n    const type = this.post('type');\r\n    await this.session('menuType', type);\r\n    return this.json(Common.success());\r\n  }\r\n\r\n  // 切换语言\r\n  async switchLanguageAction() {\r\n    const lan = this.post('lan');\r\n    await this.session('language', lan);\r\n    return this.json(Common.success());\r\n  }\r\n};\r\n"
+    ]
+}

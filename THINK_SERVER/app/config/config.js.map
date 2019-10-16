@@ -1,0 +1,18 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\config\\config.js"
+    ],
+    "names": [
+        "module",
+        "exports",
+        "port",
+        "workers",
+        "sitDomain"
+    ],
+    "mappings": "AAAA;AACAA,OAAOC,OAAP,GAAiB;AACfC,QAAM,EADS;AAEfC,WAAS,CAFM;AAGfC,aAAW;AAHI,CAAjB",
+    "file": "..\\..\\src\\config\\config.js",
+    "sourcesContent": [
+        "// default config\r\nmodule.exports = {\r\n  port: 80,\r\n  workers: 1,\r\n  sitDomain: 'http://www.fg126.com'\r\n};\r\n"
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\controller\\user.js"
+    ],
+    "names": [
+        "Base",
+        "require",
+        "module",
+        "exports",
+        "loginAction",
+        "data",
+        "post",
+        "count",
+        "model",
+        "where",
+        "account",
+        "password",
+        "json",
+        "code",
+        "msg"
+    ],
+    "mappings": ";;AAAA;AACA,MAAMA,OAAOC,QAAQ,WAAR,CAAb;AACAC,OAAOC,OAAP,GAAiB,cAAcH,IAAd,CAAmB;AAC5BI,aAAN,GAAoB;AAAA;;AAAA;AAClB,YAAMC,OAAO,MAAKC,IAAL,EAAb;AACA,YAAMC,QAAQ,MAAM,MAAKC,KAAL,CAAW,aAAX,EACjBC,KADiB,CACV,cAAaJ,KAAKK,OAAQ,cAAaL,KAAKM,QAAS,GAD3C,EAEjBJ,KAFiB,EAApB;AAGA,aAAO,MAAKK,IAAL,CACLL,QACI,EAAEM,MAAM,GAAR,EAAaC,KAAK,IAAlB,EADJ,GAEI,EAAED,MAAM,CAAC,GAAT,EAAcC,KAAK,UAAnB,EAHC,CAAP;AALkB;AAUnB;AAXiC,CAApC",
+    "file": "..\\..\\src\\controller\\user.js",
+    "sourcesContent": [
+        "// import {Common} from '../utils/common.js';\r\nconst Base = require('./base.js');\r\nmodule.exports = class extends Base {\r\n  async loginAction() {\r\n    const data = this.post();\r\n    const count = await this.model('rubber_user')\r\n      .where(`USER_NAME='${data.account}' and PWD='${data.password}'`)\r\n      .count();\r\n    return this.json(\r\n      count\r\n        ? { code: 200, msg: '成功' }\r\n        : { code: -200, msg: '帐号密码不正确!' }\r\n    );\r\n  }\r\n};\r\n"
+    ]
+}

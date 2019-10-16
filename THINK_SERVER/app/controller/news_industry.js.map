@@ -1,0 +1,39 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\controller\\news_industry.js"
+    ],
+    "names": [
+        "Base",
+        "require",
+        "pagination",
+        "module",
+        "exports",
+        "indexAction",
+        "option",
+        "desc",
+        "pageNum",
+        "url",
+        "class",
+        "text",
+        "next",
+        "prev",
+        "total",
+        "newsList",
+        "model",
+        "order",
+        "where",
+        "TYPE",
+        "page",
+        "get",
+        "countSelect",
+        "html",
+        "assign",
+        "display"
+    ],
+    "mappings": ";;AAAA;AACA,MAAMA,OAAOC,QAAQ,WAAR,CAAb;AACA,MAAMC,aAAaD,QAAQ,qBAAR,CAAnB;AACAE,OAAOC,OAAP,GAAiB,cAAcJ,IAAd,CAAmB;AAC5BK,aAAN,GAAoB;AAAA;;AAAA;AAClB,YAAMC,SAAS;AACbC,cAAM,KADO,EACA;AACbC,iBAAS,CAFI;AAGbC,aAAK,EAHQ,EAGJ;AACTC,eAAO,MAJM,EAIE;AACfC,cAAM;AACJC,gBAAM,MADF;AAEJC,gBAAM,MAFF;AAGJC,iBAAO;AAHH;AALO,OAAf;AAWA,YAAMC,WAAW,MAAM,MAAKC,KAAL,CAAW,aAAX,EAA0BC,KAA1B,CAAgC,kBAAhC,EAAoDC,KAApD,CAA0D,EAACC,MAAM,CAAP,EAA1D,EAAqEC,IAArE,CAA0E,MAAKC,GAAL,CAAS,MAAT,CAA1E,EAA4FC,WAA5F,EAAvB;AACA,YAAMC,OAAOrB,WAAWa,QAAX,EAAqB,EAArB,EAAyBT,MAAzB,CAAb;AACA,YAAKkB,MAAL,CAAY,EAACT,QAAD,EAAZ;AACA,YAAKS,MAAL,CAAY,YAAZ,EAA0BD,IAA1B;AACA,aAAO,MAAKE,OAAL,EAAP;AAhBkB;AAiBnB;AAlBiC,CAApC",
+    "file": "..\\..\\src\\controller\\news_industry.js",
+    "sourcesContent": [
+        "// import {Common} from '../utils/common.js';\r\nconst Base = require('./base.js');\r\nconst pagination = require('../utils/pagination');\r\nmodule.exports = class extends Base {\r\n  async indexAction() {\r\n    const option = {\r\n      desc: false, // show description\r\n      pageNum: 1,\r\n      url: '', // page url, when not set, it will auto generated\r\n      class: 'page', // pagenation extra class\r\n      text: {\r\n        next: 'Next',\r\n        prev: 'Prev',\r\n        total: 'count: __COUNT__ , pages: __PAGE__'\r\n      }\r\n    };\r\n    const newsList = await this.model('rubber_news').order('CREATE_TIME DESC').where({TYPE: 1}).page(this.get('page')).countSelect();\r\n    const html = pagination(newsList, {}, option);\r\n    this.assign({newsList});\r\n    this.assign('pagination', html);\r\n    return this.display();\r\n  }\r\n};\r\n"
+    ]
+}

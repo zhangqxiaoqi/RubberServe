@@ -1,0 +1,33 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\controller\\message.js"
+    ],
+    "names": [
+        "Base",
+        "require",
+        "module",
+        "exports",
+        "getMessageAction",
+        "list",
+        "model",
+        "order",
+        "page",
+        "get",
+        "countSelect",
+        "assign",
+        "json",
+        "code",
+        "saveAction",
+        "data",
+        "post",
+        "res",
+        "add",
+        "msg"
+    ],
+    "mappings": ";;AAAA;AACA,MAAMA,OAAOC,QAAQ,WAAR,CAAb;AACAC,OAAOC,OAAP,GAAiB,cAAcH,IAAd,CAAmB;AAC5BI,kBAAN,GAAyB;AAAA;;AAAA;AACvB,YAAMC,OAAO,MAAM,MAAKC,KAAL,CAAW,gBAAX,EAChBC,KADgB,CACV,SADU,EAEhBC,IAFgB,CAEX,MAAKC,GAAL,CAAS,MAAT,CAFW,EAGhBC,WAHgB,EAAnB;AAIA,YAAKC,MAAL,CAAY,EAAEN,IAAF,EAAZ;AACA,aAAO,MAAKO,IAAL,CAAU,EAAEC,MAAM,GAAR,EAAaR,IAAb,EAAV,CAAP;AANuB;AAOxB;AACKS,YAAN,GAAmB;AAAA;;AAAA;AACjB,YAAMC,OAAO,OAAKC,IAAL,EAAb;AACA,YAAMC,MAAM,MAAM,OAAKX,KAAL,CAAW,gBAAX,EAA6BY,GAA7B,CAAiCH,IAAjC,CAAlB;AACA,UAAIE,GAAJ,EAAS;AACP,eAAO,OAAKL,IAAL,CAAU,EAAEC,MAAM,GAAR,EAAaM,KAAK,MAAlB,EAAV,CAAP;AACD,OAFD,MAEO;AACL,eAAO,OAAKP,IAAL,CAAU,EAAEC,MAAM,CAAC,CAAT,EAAYM,KAAK,MAAjB,EAAV,CAAP;AACD;AAPgB;AAQlB;AAjBiC,CAApC",
+    "file": "..\\..\\src\\controller\\message.js",
+    "sourcesContent": [
+        "// import {Common} from '../utils/common.js';\r\nconst Base = require('./base.js');\r\nmodule.exports = class extends Base {\r\n  async getMessageAction() {\r\n    const list = await this.model('rubber_message')\r\n      .order('ID DESC')\r\n      .page(this.get('page'))\r\n      .countSelect();\r\n    this.assign({ list });\r\n    return this.json({ code: 200, list });\r\n  }\r\n  async saveAction() {\r\n    const data = this.post();\r\n    const res = await this.model('rubber_message').add(data);\r\n    if (res) {\r\n      return this.json({ code: 200, msg: '新增成功' });\r\n    } else {\r\n      return this.json({ code: -1, msg: '新增失败' });\r\n    }\r\n  }\r\n};\r\n"
+    ]
+}

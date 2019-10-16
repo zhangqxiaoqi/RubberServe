@@ -1,0 +1,30 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\controller\\pro_show.js"
+    ],
+    "names": [
+        "Base",
+        "require",
+        "module",
+        "exports",
+        "indexAction",
+        "info",
+        "model",
+        "where",
+        "ID",
+        "get",
+        "find",
+        "assign",
+        "imgs",
+        "JSON",
+        "parse",
+        "IMGS",
+        "display"
+    ],
+    "mappings": ";;AAAA;AACA,MAAMA,OAAOC,QAAQ,WAAR,CAAb;AACAC,OAAOC,OAAP,GAAiB,cAAcH,IAAd,CAAmB;AAC5BI,aAAN,GAAoB;AAAA;;AAAA;AAClB,YAAMC,OAAO,MAAM,MAAKC,KAAL,CAAW,YAAX,EAChBC,KADgB,CACV,EAAEC,IAAI,MAAKC,GAAL,CAAS,IAAT,CAAN,EADU,EAEhBC,IAFgB,EAAnB;AAGA,YAAKC,MAAL,CAAY,EAAEN,IAAF,EAAZ;AACA,YAAKM,MAAL,CAAY,EAAEC,MAAMC,KAAKC,KAAL,CAAWT,KAAKU,IAAhB,CAAR,EAAZ;AACA,aAAO,MAAKC,OAAL,EAAP;AANkB;AAOnB;AARiC,CAApC",
+    "file": "..\\..\\src\\controller\\pro_show.js",
+    "sourcesContent": [
+        "// import {Common} from '../utils/common.js';\r\nconst Base = require('./base.js');\r\nmodule.exports = class extends Base {\r\n  async indexAction() {\r\n    const info = await this.model('rubber_pro')\r\n      .where({ ID: this.get('ID') })\r\n      .find();\r\n    this.assign({ info });\r\n    this.assign({ imgs: JSON.parse(info.IMGS) });\r\n    return this.display();\r\n  }\r\n};\r\n"
+    ]
+}

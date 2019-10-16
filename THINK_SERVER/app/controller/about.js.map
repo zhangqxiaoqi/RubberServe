@@ -1,0 +1,37 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\controller\\about.js"
+    ],
+    "names": [
+        "Base",
+        "require",
+        "module",
+        "exports",
+        "indexAction",
+        "info",
+        "model",
+        "where",
+        "TYPE",
+        "find",
+        "console",
+        "log",
+        "assign",
+        "display",
+        "getDetailAction",
+        "get",
+        "json",
+        "code",
+        "data",
+        "saveAboutAction",
+        "post",
+        "res",
+        "update",
+        "msg"
+    ],
+    "mappings": ";;AAAA;AACA,MAAMA,OAAOC,QAAQ,WAAR,CAAb;AACAC,OAAOC,OAAP,GAAiB,cAAcH,IAAd,CAAmB;AAC5BI,aAAN,GAAoB;AAAA;;AAAA;AAClB,YAAMC,OAAO,MAAM,MAAKC,KAAL,CAAW,aAAX,EAChBC,KADgB,CACV,EAAEC,MAAM,CAAR,EADU,EAEhBC,IAFgB,EAAnB;AAGAC,cAAQC,GAAR,CAAYN,IAAZ;AACA,YAAKO,MAAL,CAAY,EAAEP,MAAMA,IAAR,EAAZ;AACA,aAAO,MAAKQ,OAAL,EAAP;AANkB;AAOnB;AACKC,iBAAN,GAAwB;AAAA;;AAAA;AACtB,YAAMT,OAAO,MAAM,OAAKC,KAAL,CAAW,aAAX,EAChBC,KADgB,CACV,EAAEC,MAAM,OAAKO,GAAL,CAAS,MAAT,CAAR,EADU,EAEhBN,IAFgB,EAAnB;AAGA,aAAO,OAAKO,IAAL,CAAU,EAAEC,MAAM,GAAR,EAAaC,MAAMb,IAAnB,EAAV,CAAP;AAJsB;AAKvB;AACD;;;AAGMc,iBAAN,GAAwB;AAAA;;AAAA;AACtB,YAAMD,OAAO,OAAKE,IAAL,EAAb;AACA,YAAMC,MAAM,MAAM,OAAKf,KAAL,CAAW,aAAX,EACfC,KADe,CACT,EAAEC,MAAMU,KAAKV,IAAb,EADS,EAEfc,MAFe,CAERJ,IAFQ,CAAlB;AAGA,UAAIG,GAAJ,EAAS;AACP,eAAO,OAAKL,IAAL,CAAU,EAAEC,MAAM,GAAR,EAAaM,KAAK,MAAlB,EAAV,CAAP;AACD,OAFD,MAEO;AACL,eAAO,OAAKP,IAAL,CAAU,EAAEC,MAAM,CAAC,CAAT,EAAYM,KAAK,MAAjB,EAAV,CAAP;AACD;AATqB;AAUvB;AA5BiC,CAApC",
+    "file": "..\\..\\src\\controller\\about.js",
+    "sourcesContent": [
+        "// import {Common} from '../utils/common.js';\r\nconst Base = require('./base.js');\r\nmodule.exports = class extends Base {\r\n  async indexAction() {\r\n    const info = await this.model('rubber_info')\r\n      .where({ TYPE: 1 })\r\n      .find();\r\n    console.log(info);\r\n    this.assign({ info: info });\r\n    return this.display();\r\n  }\r\n  async getDetailAction() {\r\n    const info = await this.model('rubber_info')\r\n      .where({ TYPE: this.get('TYPE') })\r\n      .find();\r\n    return this.json({ code: 200, data: info });\r\n  }\r\n  /**\r\n   *保存\r\n   */\r\n  async saveAboutAction() {\r\n    const data = this.post();\r\n    const res = await this.model('rubber_info')\r\n      .where({ TYPE: data.TYPE })\r\n      .update(data);\r\n    if (res) {\r\n      return this.json({ code: 200, msg: '操作成功' });\r\n    } else {\r\n      return this.json({ code: -1, msg: '操作失败' });\r\n    }\r\n  }\r\n};\r\n"
+    ]
+}

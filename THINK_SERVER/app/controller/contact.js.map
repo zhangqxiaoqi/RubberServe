@@ -1,0 +1,26 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\controller\\contact.js"
+    ],
+    "names": [
+        "Base",
+        "require",
+        "module",
+        "exports",
+        "indexAction",
+        "companyInfo",
+        "model",
+        "find",
+        "info",
+        "where",
+        "TYPE",
+        "assign",
+        "display"
+    ],
+    "mappings": ";;AAAA;AACA,MAAMA,OAAOC,QAAQ,WAAR,CAAb;AACAC,OAAOC,OAAP,GAAiB,cAAcH,IAAd,CAAmB;AAC5BI,aAAN,GAAoB;AAAA;;AAAA;AAClB,YAAMC,cAAc,MAAM,MAAKC,KAAL,CAAW,cAAX,EAA2BC,IAA3B,EAA1B;AACA,YAAMC,OAAO,MAAM,MAAKF,KAAL,CAAW,aAAX,EAA0BG,KAA1B,CAAgC,EAACC,MAAM,CAAP,EAAhC,EAA2CH,IAA3C,EAAnB;AACA,YAAKI,MAAL,CAAY,EAACH,IAAD,EAAZ;AACA,YAAKG,MAAL,CAAY,EAACN,WAAD,EAAZ;AACA,aAAO,MAAKO,OAAL,EAAP;AALkB;AAMnB;AAPiC,CAApC",
+    "file": "..\\..\\src\\controller\\contact.js",
+    "sourcesContent": [
+        "// import {Common} from '../utils/common.js';\r\nconst Base = require('./base.js');\r\nmodule.exports = class extends Base {\r\n  async indexAction() {\r\n    const companyInfo = await this.model('company_info').find();\r\n    const info = await this.model('rubber_info').where({TYPE: 5}).find();\r\n    this.assign({info});\r\n    this.assign({companyInfo});\r\n    return this.display();\r\n  }\r\n};\r\n"
+    ]
+}

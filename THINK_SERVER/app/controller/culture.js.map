@@ -1,0 +1,25 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\controller\\culture.js"
+    ],
+    "names": [
+        "Base",
+        "require",
+        "module",
+        "exports",
+        "indexAction",
+        "info",
+        "model",
+        "where",
+        "TYPE",
+        "find",
+        "assign",
+        "display"
+    ],
+    "mappings": ";;AAAA;AACA,MAAMA,OAAOC,QAAQ,WAAR,CAAb;AACAC,OAAOC,OAAP,GAAiB,cAAcH,IAAd,CAAmB;AAC5BI,aAAN,GAAoB;AAAA;;AAAA;AAClB,YAAMC,OAAO,MAAM,MAAKC,KAAL,CAAW,aAAX,EAA0BC,KAA1B,CAAgC,EAACC,MAAM,CAAP,EAAhC,EAA2CC,IAA3C,EAAnB;AACA,YAAKC,MAAL,CAAY,EAACL,MAAMA,IAAP,EAAZ;AACA,aAAO,MAAKM,OAAL,EAAP;AAHkB;AAInB;AALiC,CAApC",
+    "file": "..\\..\\src\\controller\\culture.js",
+    "sourcesContent": [
+        "// import {Common} from '../utils/common.js';\r\nconst Base = require('./base.js');\r\nmodule.exports = class extends Base {\r\n  async indexAction() {\r\n    const info = await this.model('rubber_info').where({TYPE: 3}).find();\r\n    this.assign({info: info});\r\n    return this.display();\r\n  }\r\n};\r\n"
+    ]
+}

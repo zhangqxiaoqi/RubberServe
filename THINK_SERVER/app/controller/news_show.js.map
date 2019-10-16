@@ -1,0 +1,26 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\controller\\news_show.js"
+    ],
+    "names": [
+        "Base",
+        "require",
+        "module",
+        "exports",
+        "indexAction",
+        "newsInfo",
+        "model",
+        "where",
+        "ID",
+        "get",
+        "find",
+        "assign",
+        "display"
+    ],
+    "mappings": ";;AAAA;AACA,MAAMA,OAAOC,QAAQ,WAAR,CAAb;AACAC,OAAOC,OAAP,GAAiB,cAAcH,IAAd,CAAmB;AAC5BI,aAAN,GAAoB;AAAA;;AAAA;AAClB,YAAMC,WAAW,MAAM,MAAKC,KAAL,CAAW,aAAX,EAA0BC,KAA1B,CAAgC,EAACC,IAAI,MAAKC,GAAL,CAAS,IAAT,CAAL,EAAhC,EAAsDC,IAAtD,EAAvB;AACA,YAAKC,MAAL,CAAY,EAACN,QAAD,EAAZ;AACA,aAAO,MAAKO,OAAL,EAAP;AAHkB;AAInB;AALiC,CAApC",
+    "file": "..\\..\\src\\controller\\news_show.js",
+    "sourcesContent": [
+        "// import {Common} from '../utils/common.js';\r\nconst Base = require('./base.js');\r\nmodule.exports = class extends Base {\r\n  async indexAction() {\r\n    const newsInfo = await this.model('rubber_news').where({ID: this.get('ID')}).find();\r\n    this.assign({newsInfo});\r\n    return this.display();\r\n  }\r\n};\r\n"
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\utils\\common.js"
+    ],
+    "names": [
+        "Common",
+        "success",
+        "message",
+        "code",
+        "error",
+        "ColumnTitle",
+        "lan",
+        "aboutUS",
+        "productCenter",
+        "seeMore",
+        "home",
+        "news",
+        "newsCenter",
+        "companyNew",
+        "tradeNews",
+        "device",
+        "contact",
+        "companyProfile",
+        "cultureculture",
+        "culture",
+        "contactWay",
+        "onlineMessage",
+        "phone",
+        "email",
+        "address",
+        "postcode",
+        "name",
+        "leave_meg",
+        "submit",
+        "reset",
+        "product_detail",
+        "honor"
+    ],
+    "mappings": ";AAAA,MAAMA,SAAS;AACbC,UAAQC,OAAR,EAAiB;AACf,WAAO,EAAEC,MAAM,CAAR,EAAWD,SAASA,WAAW,KAA/B,EAAP;AACD,GAHY;AAIbE,QAAMF,OAAN,EAAe;AACb,WAAO,EAAEC,MAAM,CAAR,EAAWD,SAASA,WAAW,KAA/B,EAAP;AACD,GANY;AAObG,cAAYC,GAAZ,EAAiB;AACf;AACA,QAAIA,QAAQ,IAAZ,EAAkB;AAChB,aAAO;AACLC,iBAAS,MADJ;AAELC,uBAAe,MAFV;AAGLC,iBAAS,MAHJ;AAILC,cAAM,IAJD;AAKLC,cAAM,MALD;AAMLC,oBAAY,MANP;AAOLC,oBAAY,MAPP;AAQLC,mBAAW,MARN;AASLC,gBAAQ,MATH;AAULC,iBAAS,MAVJ;AAWLC,wBAAgB,MAXX;AAYLC,wBAAgB,MAZX;AAaLC,iBAAS,MAbJ;AAcLC,oBAAY,MAdP;AAeLC,uBAAe,MAfV;AAgBLC,eAAO,IAhBF;AAiBLC,eAAO,IAjBF;AAkBLC,iBAAS,IAlBJ;AAmBLC,kBAAU,IAnBL;AAoBLC,cAAM,IApBD;AAqBLC,mBAAW,IArBN;AAsBLC,gBAAQ,IAtBH;AAuBLC,eAAO,IAvBF;AAwBLC,wBAAgB;AAxBX,OAAP;AA0BD,KA3BD,MA2BO;AACL,aAAO;AACLvB,iBAAS,UADJ;AAELC,uBAAe,gBAFV;AAGLC,iBAAS,UAHJ;AAILC,cAAM,MAJD;AAKLC,cAAM,MALD;AAMLE,oBAAY,cANP;AAOLC,mBAAW,YAPN;AAQLC,gBAAQ,QARH;AASLC,iBAAS,SATJ;AAULC,wBAAgB,iBAVX;AAWLC,wBAAgB,iBAXX;AAYLa,eAAO,OAZF;AAaLZ,iBAAS,oBAbJ;AAcLC,oBAAY,aAdP;AAeLC,uBAAe,gBAfV;AAgBLC,eAAO,MAhBF;AAiBLC,eAAO,OAjBF;AAkBLC,iBAAS,SAlBJ;AAmBLC,kBAAU,UAnBL;AAoBLC,cAAM,MApBD;AAqBLC,mBAAW,eArBN;AAsBLC,gBAAQ,QAtBH;AAuBLC,eAAO,OAvBF;AAwBLC,wBAAgB,gBAxBX;AAyBLlB,oBAAY;AAzBP,OAAP;AA2BD;AACF;AAjEY,CAAf;QAmESZ,M,GAAAA,M",
+    "file": "..\\..\\src\\utils\\common.js",
+    "sourcesContent": [
+        "const Common = {\r\n  success(message) {\r\n    return { code: 0, message: message || '成功!' };\r\n  },\r\n  error(message) {\r\n    return { code: 0, message: message || '失败!' };\r\n  },\r\n  ColumnTitle(lan) {\r\n    // 栏目标题\r\n    if (lan === 'CN') {\r\n      return {\r\n        aboutUS: '关于我们',\r\n        productCenter: '产品中心',\r\n        seeMore: '查看更多',\r\n        home: '首页',\r\n        news: '新闻动态',\r\n        newsCenter: '新闻中心',\r\n        companyNew: '公司新闻',\r\n        tradeNews: '行业新闻',\r\n        device: '生产设备',\r\n        contact: '联系我们',\r\n        companyProfile: '公司简介',\r\n        cultureculture: '资质荣誉',\r\n        culture: '企业文化',\r\n        contactWay: '联系方式',\r\n        onlineMessage: '在线留言',\r\n        phone: '电话',\r\n        email: '邮箱',\r\n        address: '地址',\r\n        postcode: '邮编',\r\n        name: '姓名',\r\n        leave_meg: '留言',\r\n        submit: '提交',\r\n        reset: '重置',\r\n        product_detail: '产品详细'\r\n      };\r\n    } else {\r\n      return {\r\n        aboutUS: 'About Us',\r\n        productCenter: 'Product Center',\r\n        seeMore: 'See More',\r\n        home: 'HOME',\r\n        news: 'NEWS',\r\n        companyNew: 'Company News',\r\n        tradeNews: 'Trade News',\r\n        device: 'DEVICE',\r\n        contact: 'CONTACT',\r\n        companyProfile: 'Company Profile',\r\n        cultureculture: 'Culture Culture',\r\n        honor: 'Honor',\r\n        culture: 'Enterprise Culture',\r\n        contactWay: 'Contact Way',\r\n        onlineMessage: 'Online Message',\r\n        phone: 'CALL',\r\n        email: 'EMAIL',\r\n        address: 'ADDRESS',\r\n        postcode: 'POSTCODE',\r\n        name: 'NAME',\r\n        leave_meg: 'LEAVE MESSAGE',\r\n        submit: 'SUBMIT',\r\n        reset: 'RESET',\r\n        product_detail: 'PRODUCT DETAIL',\r\n        newsCenter: 'NEWS CENTER'\r\n      };\r\n    }\r\n  }\r\n};\r\nexport { Common };\r\n"
+    ]
+}
