@@ -26,7 +26,7 @@
 <div class="inpro">
   <div class="inptit">
     <span><em>{{columnTitle.productCenter}}</em></span>
-    <p>{{companyInfo['PRODUCT_CENTER_'+locale]|safe}}</p>
+    <div class="productCenter-des">{{companyInfo['PRODUCT_CENTER_'+locale]|safe}}</div>
     <a href="pro.html">{{columnTitle.seeMore}}</a>
   </div>
   <div class="inpcon clearfix">
@@ -46,7 +46,7 @@
 <div class="innews">
   <div class="inptit">
     <span><em class="left"></em>{{columnTitle.newsCenter}}<em class="right"></em></span>
-    <p>{{ companyInfo['NEWS_CENTER_'+locale]|safe }}</p>
+    <div class="productCenter-des">{{ companyInfo['NEWS_CENTER_'+locale]|safe }}</div>
   </div>
   <div class="innewcon">
     <ul class="container clearfix">

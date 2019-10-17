@@ -89,16 +89,19 @@ img {
   width: 1200px;
   margin: 0 auto;
 }
+
 .container-box .inabcon {
   width: 100%;
-  height: 360px;
+  max-height: 400px;
   overflow: hidden;
   display: flex;
 }
+
 .container-box .inabcon .content {
   flex: 1;
   padding-right: 10px;
 }
+
 .container-box .inabcon .about-img {
   width: 500px;
 }
@@ -2108,6 +2111,18 @@ img {
 
 table td {
   border: 1px solid gray;
+}
+
+.productCenter-des {
+  width: 480px;
+  margin: 0 auto;
+  position: relative;
+  left: 30px;
+}
+
+.productCenter-des p {
+  width: 100%;
+  text-align: left;
 }
 
 /*# sourceMappingURL=style.css.map */
