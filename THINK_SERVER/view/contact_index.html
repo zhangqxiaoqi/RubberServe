@@ -37,17 +37,23 @@
           <a href={{'tel:'+companyInfo.PHONE}}>{{companyInfo.PHONE}}</a>
         </li>
         <li>
+          <b>{{columnTitle.mobile}}</b>
+          <a href={{'tel:'+companyInfo.MOBILE}}>{{companyInfo.MOBILE}}</a>
+        </li>
+        <li>
           <b>{{columnTitle.email}}</b>
           <a href={{'mailto:'+companyInfo.EMAIL}}>{{companyInfo.EMAIL}}</a>
+        </li>
+        <li>
+          <b>{{columnTitle.qq}}</b>
+          {{companyInfo.QQ}}
         </li>
         <li>
           <b>{{columnTitle.address}}</b>
           {{companyInfo.ADDRESS_CN}}
         </li>
-        <li>
-          <b>{{columnTitle.postcode}}</b>
-          {{companyInfo.POSTCODE}}
-        </li>
+
+
       </ul>
 
       <div id="map"></div>

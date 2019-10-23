@@ -401,8 +401,11 @@ img {
 
 .innews {
   padding: 0 0 95px;
+  max-width: 1600px;
   overflow: hidden;
-  background: url(../images/innew.jpg) no-repeat top center;
+  background: url(../images/innew.jpg) no-repeat center center;
+  background-size: cover;
+  margin: 0 auto;
 }
 
 .innews .inptit {
@@ -434,6 +437,7 @@ img {
   float: left;
   width: 30%;
   margin-right: 5%;
+  margin-bottom: 10px;
 }
 
 .innewcon ul li .pic {
@@ -1150,9 +1154,10 @@ img {
   list-style: none;
   float: left;
   font-family: arial;
-  margin: 0 18% 2% 0;
+  margin: 0 2% 2% 0;
   color: #4e4e4e;
-  font-size: 13px;
+  font-size: 15px;
+  width: 300px;
 }
 
 .contact_us li b {
@@ -2114,10 +2119,10 @@ table td {
 }
 
 .productCenter-des {
-  width: 480px;
-  margin: 0 auto;
+  /* width: 480px; */
+  margin: 20px auto 0;
   position: relative;
-  left: 30px;
+  /* left: 30px; */
 }
 
 .productCenter-des p {

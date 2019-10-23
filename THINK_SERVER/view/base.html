@@ -5,8 +5,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>{{ companyInfo['COMPANY_NAME_'+locale] }}</title>
-  <meta name="keywords" content="{{ companyInfo['COMPANY_NAME_'+locale] }}">
-  <meta name="description" content="{{ companyInfo['COMPANY_NAME_'+locale] }}">
+  <meta name="keywords"
+    content="绝缘橡胶板，绝缘橡胶板10kv，天然橡胶板，耐油橡胶板，丁腈橡胶板，预硫化丁基橡胶板，天然橡胶板，耐磨橡胶板，氯丁橡胶板，丁苯橡胶板，氟橡胶板，夹布橡胶板，硅橡胶板，橡胶板生产厂家,rubber sheet,nr,sbr,nbr,cr,fluororubbersheet,Silicone rubber，Clamp rubber plate，Cloth clamping rubber sheet">
+  <meta name="description"
+    content="绝缘橡胶板，绝缘橡胶板10kv，天然橡胶板，耐油橡胶板，丁腈橡胶板，预硫化丁基橡胶板，天然橡胶板，耐磨橡胶板，氯丁橡胶板，丁苯橡胶板，氟橡胶板，夹布橡胶板，硅橡胶板，橡胶板生产厂家,rubber sheet,nr,sbr,nbr,cr,fluororubbersheet,Silicone rubber，Clamp rubber plate，Cloth clamping rubber sheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="shortcut icon" href="favicon.ico">
 
@@ -93,7 +95,7 @@
     <div class="footer-logo">
       <div class="container">
         <!-- <a href="index.html"><img style="height: 80px" src="static/images/logo.png" alt="" /></a> -->
-        <a>{{columnTitle.address}}：南京市高淳区古柏开发区 {{columnTitle.postcode}}：211316</a>
+        <a>{{columnTitle.address}}：{{companyInfo['ADDRESS_'+locale]}} QQ：{{companyInfo.QQ}}</a>
         <span>{{columnTitle.phone}}：<b>{{companyInfo.PHONE}}</b></span>
       </div>
     </div>
@@ -148,7 +150,7 @@
     </div>
 
     <!--移动端  Mmenu-->
-    <nav id="mmenu">
+    <!-- <nav id="mmenu">
       <ul>
         <li><a href="#">EN</a></li>
         <li><a href="index.html">首 页</a></li>
@@ -217,7 +219,7 @@
           </ul>
         </li>
       </ul>
-    </nav>
+    </nav> -->
 
   </div>
 

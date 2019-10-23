@@ -27,7 +27,7 @@ module.exports = class extends Base {
   async homeAction() {
     const newsList = await this.model('rubber_news')
       .order('ID DESC')
-      .limit(3)
+      .limit(6)
       .select();
     return newsList;
   }
